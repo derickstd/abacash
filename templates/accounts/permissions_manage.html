@@ -44,7 +44,7 @@
       </div>
     </form>
 
-    {% if not entry.is_builtin %}
+    {% if not entry.is_builtin and user.role == "CEO" %}
     <form method="post" onsubmit="return confirm('Delete the {{ entry.group.name }} group? Anyone currently in it will lose these permissions.');" style="display:inline;margin-top:4px;">
       {% csrf_token %}
       <input type="hidden" name="form_action" value="delete_group">

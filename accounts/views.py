@@ -22,6 +22,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.dateparse import parse_date
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.http import require_POST
 from django.core.mail import send_mail
 from django.conf import settings
 from dateutil.relativedelta import relativedelta
@@ -1222,7 +1223,8 @@ def user_edit(request, pk):
     })
 
 
-@_permission_required("can_manage_users")
+@_ceo_required
+@require_POST
 def user_toggle_active(request, pk):
     staff = get_object_or_404(User, pk=pk)
     if staff == request.user:
@@ -1965,7 +1967,9 @@ def permissions_manage(request):
         if action == "delete_group":
             group_id = request.POST.get("group_id")
             group = get_object_or_404(Group, pk=group_id)
-            if group.name in ALL_GROUPS:
+            if request.user.role != "CEO":
+                messages.error(request, "Only the CEO can delete permission groups.")
+            elif group.name in ALL_GROUPS:
                 messages.error(request, f'"{group.name}" is a built-in role and can\'t be deleted.')
             else:
                 name = group.name
@@ -2281,7 +2285,7 @@ def expense_edit(request, pk):
     })
 
 
-@_permission_required("can_manage_expenses")
+@_ceo_required
 def expense_delete(request, pk):
     expense = get_object_or_404(Expense, pk=pk)
     if request.method == "POST":
@@ -2480,7 +2484,7 @@ def capital_injection_edit(request, pk):
     })
 
 
-@_permission_required("can_manage_capital")
+@_ceo_required
 def capital_injection_delete(request, pk):
     injection = get_object_or_404(CapitalInjection, pk=pk)
     if request.method == "POST":
@@ -2715,7 +2719,7 @@ def investor_edit(request, pk):
     })
 
 
-@_permission_required("can_manage_investors")
+@_ceo_required
 def investor_delete(request, pk):
     investor = get_object_or_404(Investor, pk=pk)
     if request.method == "POST":

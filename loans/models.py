@@ -117,7 +117,10 @@ class LoanProduct(models.Model):
     )
     penalty_enabled = models.BooleanField(
         default=True,
-        help_text=_("If disabled, overdue installments are not charged a late-payment penalty."),
+        help_text=_(
+            "If disabled, overdue installments are not charged by default; a CEO "
+            "can override this for an individual loan."
+        ),
     )
 
     # Processing fee (percentage of loan amount)
@@ -129,7 +132,10 @@ class LoanProduct(models.Model):
     )
     processing_fee_enabled = models.BooleanField(
         default=True,
-        help_text=_("If disabled, loans using this product do not incur a processing fee."),
+        help_text=_(
+            "If disabled, loans do not incur a processing fee by default; a CEO "
+            "can override this for an individual loan."
+        ),
     )
 
     requires_guarantor = models.BooleanField(
@@ -564,7 +570,9 @@ class Loan(models.Model):
                 try:
                     from loans.utils import calculate_processing_fee_amount
                     self.processing_fee = calculate_processing_fee_amount(
-                        self.principal_amount, product=self.product
+                        self.principal_amount,
+                        product=self.product,
+                        allow_disabled_product_fee=self.processing_fee_enabled,
                     )
                 except Exception:
                     pass
@@ -591,7 +599,11 @@ class Loan(models.Model):
             return Decimal("0")
         try:
             from loans.utils import calculate_processing_fee_amount
-            return calculate_processing_fee_amount(self.principal_amount, product=self.product)
+            return calculate_processing_fee_amount(
+                self.principal_amount,
+                product=self.product,
+                allow_disabled_product_fee=self.processing_fee_enabled,
+            )
         except Exception:
             return Decimal("0")
 

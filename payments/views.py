@@ -599,11 +599,11 @@ def payment_history(request, loan_pk):
 
 @login_required
 def credit_refund(request, client_pk):
-    """Manager/CEO refund a client's credit balance (cash payout of stored credit)."""
+    """CEO refunds a client's credit balance (cash payout of stored credit)."""
     from clients.models import Client
 
-    if request.user.is_cashier:
-        messages.error(request, "Only Managers and CEO can process refunds.")
+    if request.user.role != "CEO":
+        messages.error(request, "Only the CEO can process refunds.")
         return redirect("clients:detail", pk=client_pk)
 
     client = get_object_or_404(Client, pk=client_pk)

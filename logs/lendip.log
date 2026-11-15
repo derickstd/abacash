@@ -23551,3 +23551,1660 @@ LINE 1: ...l35", "loans_loan"."rejection_reason" AS "col36", "loans_loa...
 2026-11-14 08:07:16 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
 2026-11-14 08:07:21 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
 2026-11-14 08:07:31 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-14 08:11:54 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-14 08:12:02 [INFO] django.server: "GET /loans/products/ HTTP/1.1" 200 199363
+2026-11-14 08:12:04 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-14 08:12:08 [INFO] django.server: "GET /accounts/logout/ HTTP/1.1" 302 0
+2026-11-14 08:12:08 [INFO] django.server: "GET /accounts/login/ HTTP/1.1" 200 14239
+2026-11-14 08:12:10 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-14 08:12:27 [INFO] django.server: "POST /accounts/login/ HTTP/1.1" 302 0
+2026-11-14 08:12:27 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274049
+2026-11-14 08:12:27 [INFO] django.server: "GET /static/css/loan-calculator.css?v=2 HTTP/1.1" 200 9527
+2026-11-14 08:12:27 [INFO] django.server: "GET /static/js/aba.js?v=theme-dock-3 HTTP/1.1" 200 36062
+2026-11-14 08:12:27 [INFO] django.server: "GET /static/js/loan-calculator.js?v=2 HTTP/1.1" 200 8879
+2026-11-14 08:12:28 [INFO] django.server: "GET /manifest.webmanifest HTTP/1.1" 200 791
+2026-11-14 08:12:28 [WARNING] django.request: Not Found: /media/aba/company/ID.jfif
+2026-11-14 08:12:28 [WARNING] django.server: "GET /media/aba/company/ID.jfif HTTP/1.1" 404 179
+2026-11-14 08:12:30 [WARNING] django.request: Not Found: /media/aba/company/ID.jfif
+2026-11-14 08:12:30 [WARNING] django.server: "GET /media/aba/company/ID.jfif HTTP/1.1" 404 179
+2026-11-14 08:12:30 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-14 08:12:31 [WARNING] django.request: Not Found: /favicon.ico
+2026-11-14 08:12:31 [WARNING] django.server: "GET /favicon.ico HTTP/1.1" 404 179
+2026-11-14 08:12:31 [INFO] django.server: "GET / HTTP/1.1" 302 0
+2026-11-14 08:12:31 [INFO] django.server: "GET /icons/192.png HTTP/1.1" 200 37382
+2026-11-14 08:12:31 [INFO] django.server: "GET /offline/ HTTP/1.1" 200 194872
+2026-11-14 08:12:31 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274049
+2026-11-14 08:12:36 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-14 08:12:40 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-14 08:12:51 [INFO] django.server: "GET /accounts/admin-panel/users/ HTTP/1.1" 200 197851
+2026-11-14 08:12:51 [WARNING] django.request: Not Found: /media/aba/company/ID.jfif
+2026-11-14 08:12:51 [WARNING] django.server: "GET /media/aba/company/ID.jfif HTTP/1.1" 404 179
+2026-11-14 08:12:53 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-14 08:12:55 [INFO] django.server: "GET /accounts/admin-panel/users/new/ HTTP/1.1" 200 198731
+2026-11-14 08:12:57 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-14 08:13:09 [INFO] django.server: "GET /loans/products/ HTTP/1.1" 200 199363
+2026-11-14 08:13:11 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-14 08:13:13 [INFO] django.server: "GET /loans/products/new/ HTTP/1.1" 200 5386
+2026-11-14 10:54:02 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-14 11:06:40 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-14 11:06:54 [INFO] django.server: "GET /loans/calculator/pdf/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 80964
+2026-11-14 11:07:18 [INFO] django.server: "GET /loans/products/1/edit/ HTTP/1.1" 200 5393
+2026-11-14 11:08:01 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274049
+2026-11-14 11:08:01 [INFO] django.server: "GET /manifest.webmanifest HTTP/1.1" 200 791
+2026-11-14 11:08:03 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-14 11:08:10 [INFO] django.server: "GET /accounts/admin-panel/investors/ HTTP/1.1" 200 198191
+2026-11-14 11:08:12 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 13:21:59 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 13:22:12 [WARNING] django.request: Not Found: /
+2026-11-15 13:22:12 [WARNING] django.server: "GET / HTTP/1.1" 404 0
+2026-11-15 13:22:14 [WARNING] django.request: Not Found: /
+2026-11-15 13:22:14 [WARNING] django.server: "GET / HTTP/1.1" 404 0
+2026-11-15 13:22:33 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:22:33 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:22:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:22:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:22:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:22:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:23:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:23:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:23:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:23:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:23:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:23:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:24:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:24:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:24:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:24:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:24:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:24:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:25:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:25:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:25:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:25:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:25:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:25:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:26:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:26:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:26:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:26:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:26:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:26:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:29:11 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:29:11 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:29:11 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:29:11 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:29:11 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:29:11 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:29:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:29:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:29:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:29:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:29:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 13:29:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 0
+2026-11-15 13:30:06 [WARNING] django.request: Not Found: /
+2026-11-15 13:30:06 [WARNING] django.server: "GET / HTTP/1.1" 404 0
+2026-11-15 13:30:37 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 13:30:53 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 13:30:53 [INFO] django.server: "GET /static/images/logo.png HTTP/1.1" 200 1420572
+2026-11-15 13:30:53 [INFO] django.server: "GET /static/css/aba.css HTTP/1.1" 200 53135
+2026-11-15 13:31:01 [INFO] django.server: "GET /static/images/aba.png HTTP/1.1" 200 950561
+2026-11-15 13:31:06 [WARNING] django.request: Not Found: /favicon.ico
+2026-11-15 13:31:06 [WARNING] django.server: "GET /favicon.ico HTTP/1.1" 404 179
+2026-11-15 13:31:36 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 13:31:36 [INFO] django.server: "GET /static/css/aba.css HTTP/1.1" 200 53135
+2026-11-15 13:31:36 [INFO] django.server: "GET /static/images/logo.png HTTP/1.1" 200 1420572
+2026-11-15 13:31:36 [INFO] django.server: "GET /static/images/aba.png HTTP/1.1" 200 950561
+2026-11-15 13:31:37 [WARNING] django.request: Not Found: /favicon.ico
+2026-11-15 13:31:37 [WARNING] django.server: "GET /favicon.ico HTTP/1.1" 404 179
+2026-11-15 13:31:45 [INFO] django.server: "POST /login/ HTTP/1.1" 302 0
+2026-11-15 14:04:59 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 14:05:22 [INFO] django.server: "GET / HTTP/1.1" 200 14239
+2026-11-15 14:05:23 [INFO] django.server: - Broken pipe from ('127.0.0.1', 51437)
+2026-11-15 14:05:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:05:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:05:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:05:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:06:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:06:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:06:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:06:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:07:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:07:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:07:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:07:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:08:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:08:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:08:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:08:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:09:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:09:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:09:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:09:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:10:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:10:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:10:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:10:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:11:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:11:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:11:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:11:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:12:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:12:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:12:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:12:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:13:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:13:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:13:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:13:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:14:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:14:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:14:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:14:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:15:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:15:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:15:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:15:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:16:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:16:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:16:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:16:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:17:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:17:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:17:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:17:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:18:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:18:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:18:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:18:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:18:51 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:18:51 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:18:56 [WARNING] django.request: Not Found: /auctions/
+2026-11-15 14:18:56 [WARNING] django.server: "GET /auctions/ HTTP/1.1" 404 4720
+2026-11-15 14:19:05 [INFO] django.server: "GET / HTTP/1.1" 302 0
+2026-11-15 14:19:05 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274034
+2026-11-15 14:19:05 [INFO] django.server: "GET /static/css/loan-calculator.css?v=2 HTTP/1.1" 200 9527
+2026-11-15 14:19:05 [INFO] django.server: "GET /static/js/aba.js?v=theme-dock-3 HTTP/1.1" 200 36062
+2026-11-15 14:19:05 [INFO] django.server: "GET /static/js/loan-calculator.js?v=2 HTTP/1.1" 200 8879
+2026-11-15 14:19:05 [INFO] django.server: "GET /media/aba/company/ID.jfif HTTP/1.1" 200 61690
+2026-11-15 14:19:06 [WARNING] django.request: Not Found: /favicon.ico
+2026-11-15 14:19:06 [WARNING] django.server: "GET /favicon.ico HTTP/1.1" 404 3755
+2026-11-15 14:19:06 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:19:06 [INFO] django.server: "GET / HTTP/1.1" 302 0
+2026-11-15 14:19:06 [INFO] django.server: "GET /offline/ HTTP/1.1" 200 194857
+2026-11-15 14:19:06 [INFO] django.server: "GET /manifest.webmanifest HTTP/1.1" 200 791
+2026-11-15 14:19:06 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274034
+2026-11-15 14:19:24 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274034
+2026-11-15 14:19:24 [INFO] django.server: "GET /static/css/loan-calculator.css?v=2 HTTP/1.1" 200 9527
+2026-11-15 14:19:24 [INFO] django.server: "GET /static/js/aba.js?v=theme-dock-3 HTTP/1.1" 200 36062
+2026-11-15 14:19:24 [INFO] django.server: "GET /static/js/loan-calculator.js?v=2 HTTP/1.1" 200 8879
+2026-11-15 14:19:24 [INFO] django.server: "GET /media/aba/company/ID.jfif HTTP/1.1" 200 61690
+2026-11-15 14:19:24 [INFO] django.server: "GET /manifest.webmanifest HTTP/1.1" 200 791
+2026-11-15 14:19:24 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:19:24 [WARNING] django.request: Not Found: /favicon.ico
+2026-11-15 14:19:24 [WARNING] django.server: "GET /favicon.ico HTTP/1.1" 404 3755
+2026-11-15 14:19:24 [INFO] django.server: "GET / HTTP/1.1" 302 0
+2026-11-15 14:19:24 [INFO] django.server: "GET /offline/ HTTP/1.1" 200 194857
+2026-11-15 14:19:24 [INFO] django.server: "GET /icons/192.png HTTP/1.1" 200 37382
+2026-11-15 14:19:25 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274034
+2026-11-15 14:19:33 [INFO] django.server: "GET /loans/ HTTP/1.1" 200 213474
+2026-11-15 14:19:35 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:19:36 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 3521
+2026-11-15 14:19:38 [INFO] django.server: "GET /clients/ HTTP/1.1" 200 206638
+2026-11-15 14:19:40 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:19:42 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-15 14:19:49 [INFO] django.server: "GET /loans/apply/ HTTP/1.1" 200 212248
+2026-11-15 14:19:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:19:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:19:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:19:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:19:51 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:19:53 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-15 14:20:04 [INFO] django.server: "GET /payments/ HTTP/1.1" 200 210286
+2026-11-15 14:20:06 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 3521
+2026-11-15 14:20:06 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:20:07 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-15 14:20:13 [INFO] django.server: "GET /loans/calculator/preview/?principal=2&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 150
+2026-11-15 14:20:13 [INFO] django.server: "GET /loans/calculator/preview/?principal=25&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 152
+2026-11-15 14:20:14 [INFO] django.server: "GET /loans/calculator/preview/?principal=250&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 157
+2026-11-15 14:20:14 [INFO] django.server: "GET /loans/calculator/preview/?principal=2500&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 162
+2026-11-15 14:20:14 [INFO] django.server: "GET /loans/calculator/preview/?principal=25000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 167
+2026-11-15 14:20:32 [INFO] django.server: "GET /loans/calculator/preview/?principal=25000&monthly_rate=5&term_months=12&frequency=BIWEEKLY&method=FLAT HTTP/1.1" 200 167
+2026-11-15 14:20:36 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 3521
+2026-11-15 14:20:39 [INFO] django.server: "GET /loans/calculator/pdf/?principal=25000&monthly_rate=5&term_months=12&frequency=BIWEEKLY&method=FLAT HTTP/1.1" 200 82641
+2026-11-15 14:20:43 [INFO] django.server: "GET /loans/calculator/pdf/?principal=25000&monthly_rate=5&term_months=12&frequency=BIWEEKLY&method=FLAT HTTP/1.1" 200 82641
+2026-11-15 14:20:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:20:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:20:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:20:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:20:55 [INFO] django.server: "GET /payments/record/ HTTP/1.1" 200 207342
+2026-11-15 14:21:06 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 3521
+2026-11-15 14:21:07 [INFO] django.server: "POST /payments/record/ HTTP/1.1" 204 0
+2026-11-15 14:21:07 [INFO] django.server: "GET /payments/receipt/8451842f-82b8-461f-899c-b151d2ba365c/ HTTP/1.1" 200 213147
+2026-11-15 14:21:09 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:21:14 [INFO] django.server: "GET /payments/receipt/8451842f-82b8-461f-899c-b151d2ba365c/?style=modern HTTP/1.1" 200 217246
+2026-11-15 14:21:16 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:21:36 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 14:21:46 [INFO] django.server: "GET /clients/ HTTP/1.1" 200 206638
+2026-11-15 14:21:48 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:21:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:21:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:21:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:21:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:22:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:22:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:22:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:22:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:23:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:23:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:23:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:23:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:24:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:24:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:24:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:24:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:25:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:25:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:25:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:25:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:26:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:26:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:26:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:26:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:27:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:27:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:27:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:27:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:29:38 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:29:38 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:29:40 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:29:40 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:29:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:29:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:29:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:29:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:30:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:30:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:30:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:30:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:31:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:31:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:31:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:31:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:32:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:32:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:32:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:32:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:33:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:33:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:33:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:33:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:37:18 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:37:18 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:37:21 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:37:21 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:37:40 [INFO] django.server: "GET /payments/receipt/8451842f-82b8-461f-899c-b151d2ba365c/ HTTP/1.1" 200 217233
+2026-11-15 14:37:43 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:37:45 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274057
+2026-11-15 14:37:48 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:37:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:37:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:37:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:37:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:37:52 [INFO] django.server: "GET /accounts/dashboard/?period=12&date_from=&date_to=&branch= HTTP/1.1" 200 10290
+2026-11-15 14:38:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:38:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:38:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:38:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:39:05 [INFO] django.server: "GET /loans/apply/ HTTP/1.1" 200 212248
+2026-11-15 14:39:07 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:39:09 [INFO] django.server: "GET /loans/apply/689c8cb2-f963-44d1-92ef-f2b1bbd9b58e/ HTTP/1.1" 200 212133
+2026-11-15 14:39:11 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:39:27 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/ HTTP/1.1" 200 212137
+2026-11-15 14:39:29 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 14:39:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:39:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:39:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:39:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:40:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:40:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:40:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:40:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:41:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:41:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:41:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:41:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:42:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:42:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:42:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:42:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:43:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:43:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:43:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:43:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:44:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:44:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:44:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:44:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:45:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:45:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:45:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:45:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:46:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:46:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:46:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:46:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:47:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:47:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:47:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:47:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:48:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:48:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:48:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:48:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:49:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:49:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:49:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:49:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:50:05 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\utils.py changed, reloading.
+2026-11-15 14:50:05 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\models.py changed, reloading.
+2026-11-15 14:50:07 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 14:50:07 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 14:50:38 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 14:50:38 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 14:50:40 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 14:50:40 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 14:50:45 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 14:50:45 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 14:50:47 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 14:50:47 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 14:50:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:50:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:50:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:50:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:51:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:51:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:51:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:51:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:52:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:52:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:52:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:52:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:53:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:53:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:53:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:53:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:54:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:54:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:54:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:54:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:55:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:55:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:55:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:55:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:56:11 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\models.py changed, reloading.
+2026-11-15 14:56:11 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\models.py changed, reloading.
+2026-11-15 14:56:12 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 14:56:12 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 14:56:20 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 14:56:20 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 14:56:21 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 14:56:21 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 14:56:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:56:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:56:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:56:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:57:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:57:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:57:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:57:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:58:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:58:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:58:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:58:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:59:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:59:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 14:59:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 14:59:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:00:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:00:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:00:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:00:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:01:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:01:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:01:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:01:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:02:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:02:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:02:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:02:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:03:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:03:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:03:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:03:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:04:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:04:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:04:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:04:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:05:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:05:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:05:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:05:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:06:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:06:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:06:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:06:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:07:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:07:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:07:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:07:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:08:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:08:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:08:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:08:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:09:30 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/ HTTP/1.1" 200 211989
+2026-11-15 15:09:32 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 15:09:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:09:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:09:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:09:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:10:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:10:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:10:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:10:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:11:27 [INFO] django.server: "GET /loans/schedule-preview/?csrfmiddlewaretoken=64tXHyO2qqpLx5GfDHJLDxqh9otonTMmMGpQ4QoUT18AoPsTYseLVtZq0E07Zhrl&branch=1&product=1&interest_method=COMPOUND&principal=1000000&term_months=1&frequency=MONTHLY&purpose=&processing_fee_enabled=on&penalty_enabled=on HTTP/1.1" 200 3413
+2026-11-15 15:11:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:11:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:11:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:11:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:12:09 [INFO] django.server: "GET /loans/products/ HTTP/1.1" 200 199348
+2026-11-15 15:12:10 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 15:12:11 [INFO] django.server: "GET /loans/products/new/ HTTP/1.1" 200 5246
+2026-11-15 15:12:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:12:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:12:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:12:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:13:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:13:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:13:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:13:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:14:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:14:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:14:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:14:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:15:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:15:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:15:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:15:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:16:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:16:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:16:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:16:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:17:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:17:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:17:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:17:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:18:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:18:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:18:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:18:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:19:46 [INFO] django.server: "GET /loans/apply/ HTTP/1.1" 200 212248
+2026-11-15 15:19:46 [INFO] django.server: "GET /manifest.webmanifest HTTP/1.1" 200 791
+2026-11-15 15:19:48 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 15:19:48 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/ HTTP/1.1" 200 211989
+2026-11-15 15:19:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:19:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:19:50 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 15:19:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:19:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:20:36 [INFO] django.server: "GET /loans/schedule-preview/?csrfmiddlewaretoken=SmPksW4uLf2QALEJeCTc5YS5FvFNtHRDyYLdPeEmeQLFrvqnznocnUrewLcw55wC&branch=1&product=1&interest_method=REDUCING&principal=2000000&term_months=1&frequency=MONTHLY&purpose=&processing_fee_enabled=on&penalty_enabled=on HTTP/1.1" 200 3413
+2026-11-15 15:20:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:20:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:20:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:20:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:20:54 [INFO] django.server: "POST /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/ HTTP/1.1" 200 212585
+2026-11-15 15:20:56 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 15:21:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:21:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:21:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:21:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:22:03 [INFO] django.server: "GET /loans/schedule-preview/?csrfmiddlewaretoken=IQJZHQG2ieu07V8DuY34zXYEBzSAPHa3osFS48gULPdPYFUhPJy4RTxNsPpjr5P2&branch=1&product=1&interest_method=REDUCING&principal=1000000&term_months=1&frequency=MONTHLY&purpose=&processing_fee_enabled=on&penalty_enabled=on HTTP/1.1" 200 3413
+2026-11-15 15:22:13 [INFO] django.server: "POST /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/ HTTP/1.1" 200 212585
+2026-11-15 15:22:15 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 15:22:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:22:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:22:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:22:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:22:52 [INFO] django.server: "GET /loans/products/ HTTP/1.1" 200 199348
+2026-11-15 15:22:53 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 15:22:55 [INFO] django.server: "GET /loans/products/1/edit/ HTTP/1.1" 200 5253
+2026-11-15 15:23:13 [INFO] django.server: "POST /loans/products/1/edit/ HTTP/1.1" 204 0
+2026-11-15 15:23:13 [INFO] django.server: "GET /loans/products/ HTTP/1.1" 200 199889
+2026-11-15 15:23:15 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 15:23:19 [INFO] django.server: "GET /loans/apply/ HTTP/1.1" 200 212248
+2026-11-15 15:23:21 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 15:23:24 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/ HTTP/1.1" 200 212002
+2026-11-15 15:23:26 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 15:23:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:23:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:23:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:23:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:24:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:24:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:24:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:24:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:25:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:25:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:25:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:25:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:26:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:26:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:26:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:26:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:27:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:27:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:27:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:27:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:28:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:28:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:28:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:28:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:29:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:29:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:29:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:29:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:30:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:30:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:30:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:30:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:31:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:31:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:31:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:31:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:32:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:32:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:32:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:32:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:33:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:33:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:33:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:33:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:48:39 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:48:39 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:48:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:48:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:49:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:49:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:49:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:49:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:50:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:50:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:50:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:50:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:51:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:51:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:51:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:51:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:52:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:52:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:52:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:52:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:53:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:53:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:53:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:53:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:54:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:54:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:54:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:54:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:55:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:55:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:55:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:55:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:56:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:56:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:56:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:56:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:57:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:57:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:57:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:57:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:58:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:58:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:58:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:58:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:59:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:59:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 15:59:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 15:59:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:00:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:00:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:00:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:00:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:02:11 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:02:11 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:02:11 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:02:11 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:02:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:02:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:02:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:02:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:03:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:03:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:03:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:03:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:04:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:04:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:04:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:04:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:05:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:05:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:05:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:05:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:06:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:06:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:06:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:06:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:07:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:07:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:07:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:07:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:08:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:08:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:08:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:08:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:23:14 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:23:14 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:23:42 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:23:42 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:23:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:23:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:24:27 [INFO] django.server: "GET /loans/schedule-preview/?csrfmiddlewaretoken=ho3PrfID250kakPX8slcRi1mg0ECdSIvX0ZIOxivvGJ914BBtdQc9eAv7gblPgnu&branch=1&product=1&interest_method=INTEREST_ONLY&principal=200000&term_months=1&frequency=MONTHLY&purpose=&processing_fee_enabled=on&penalty_enabled=on HTTP/1.1" 200 3400
+2026-11-15 16:24:36 [INFO] django.server: "POST /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/ HTTP/1.1" 302 0
+2026-11-15 16:24:36 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/step3/ HTTP/1.1" 200 213378
+2026-11-15 16:24:36 [INFO] django.server: "GET /manifest.webmanifest HTTP/1.1" 200 791
+2026-11-15 16:24:38 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:24:42 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:24:42 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:24:49 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/?draft_id=b4f801de-7d6b-4539-b28c-a5e992ffca74 HTTP/1.1" 200 215326
+2026-11-15 16:24:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:24:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:24:51 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:24:55 [INFO] django.server: "GET /loans/schedule-preview/?csrfmiddlewaretoken=Hpl8I0vNhY5yl9vfhjJRj9B9R3WNDWrFn1h15i5FKzOncThTC4eRB5aiIjtwfk6E&branch=1&product=1&interest_method=INTEREST_ONLY&principal=200000.00&term_months=4&frequency=MONTHLY&purpose=&processing_fee_enabled=on&penalty_enabled=on HTTP/1.1" 200 4360
+2026-11-15 16:24:59 [INFO] django.server: "POST /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/?draft_id=b4f801de-7d6b-4539-b28c-a5e992ffca74 HTTP/1.1" 302 0
+2026-11-15 16:24:59 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/step3/ HTTP/1.1" 200 214340
+2026-11-15 16:25:01 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:25:20 [INFO] django.server: "GET /loans/apply/ HTTP/1.1" 200 212248
+2026-11-15 16:25:22 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:25:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:25:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:25:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:25:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:26:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:26:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:26:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:26:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:27:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:27:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:27:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:27:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:27:58 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/ HTTP/1.1" 200 216240
+2026-11-15 16:27:59 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:28:16 [INFO] django.server: "POST /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/ HTTP/1.1" 302 0
+2026-11-15 16:28:17 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/step3/ HTTP/1.1" 200 214351
+2026-11-15 16:28:18 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:28:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:28:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:28:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:28:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:29:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:29:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:29:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:29:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:29:52 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/?draft_id=b4f801de-7d6b-4539-b28c-a5e992ffca74 HTTP/1.1" 200 216297
+2026-11-15 16:29:54 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:30:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:30:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:30:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:30:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:31:19 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-15 16:31:21 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274057
+2026-11-15 16:31:22 [INFO] django.server: "GET /manifest.webmanifest HTTP/1.1" 200 791
+2026-11-15 16:31:23 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:31:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:31:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:31:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:31:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:31:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:32:00 [INFO] django.server: "POST /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/?draft_id=b4f801de-7d6b-4539-b28c-a5e992ffca74 HTTP/1.1" 302 0
+2026-11-15 16:32:00 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/step3/ HTTP/1.1" 200 214351
+2026-11-15 16:32:02 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:32:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:32:38 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/step3/ HTTP/1.1" 200 214351
+2026-11-15 16:32:39 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/?draft_id=b4f801de-7d6b-4539-b28c-a5e992ffca74 HTTP/1.1" 200 216297
+2026-11-15 16:32:40 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:32:41 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:32:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:32:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:32:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:32:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:32:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:32:53 [INFO] django.server: "GET /accounts/admin-panel/users/ HTTP/1.1" 200 197836
+2026-11-15 16:32:55 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:32:55 [INFO] django.server: "GET /accounts/admin-panel/users/3/edit/ HTTP/1.1" 200 208684
+2026-11-15 16:32:57 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:33:15 [INFO] django.server: "GET /accounts/admin-panel/users/ HTTP/1.1" 200 197836
+2026-11-15 16:33:17 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:33:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:33:28 [INFO] django.server: "GET /accounts/admin-panel/users/ HTTP/1.1" 200 197836
+2026-11-15 16:33:30 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:33:35 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-15 16:33:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:33:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:33:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:33:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:33:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:33:58 [INFO] django.utils.autoreload: C:\Users\USER\abacash\accounts\permissions.py changed, reloading.
+2026-11-15 16:33:59 [INFO] django.utils.autoreload: C:\Users\USER\abacash\accounts\permissions.py changed, reloading.
+2026-11-15 16:34:00 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:34:00 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:34:06 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 16:34:06 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 16:34:08 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:34:08 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:34:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:34:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:34:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:34:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:34:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:34:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:35:01 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274057
+2026-11-15 16:35:03 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:35:18 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 16:35:18 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 16:35:21 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:35:21 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:35:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:35:23 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:35:23 [INFO] django.server: "GET /accounts/admin-panel/audit-log/ HTTP/1.1" 200 285415
+2026-11-15 16:35:25 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:35:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:35:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:35:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:35:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:35:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:36:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:36:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:36:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:36:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:36:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:36:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:37:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:37:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:37:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:37:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:37:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:37:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:38:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:38:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:38:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:38:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:38:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:38:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:39:05 [INFO] django.server: "GET / HTTP/1.1" 200 14239
+2026-11-15 16:39:06 [INFO] django.server: - Broken pipe from ('127.0.0.1', 55299)
+2026-11-15 16:39:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:39:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:39:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:39:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:39:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:39:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:40:01 [INFO] django.server: "GET /accounts/admin-panel/audit-log/ HTTP/1.1" 200 285415
+2026-11-15 16:40:03 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:40:08 [INFO] django.server: "GET /accounts/admin-panel/users/ HTTP/1.1" 200 197836
+2026-11-15 16:40:10 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:40:11 [INFO] django.server: "GET /accounts/admin-panel/users/1/edit/ HTTP/1.1" 200 209378
+2026-11-15 16:40:13 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:40:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:40:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:40:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:40:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:40:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:40:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:41:01 [INFO] django.server: "GET /accounts/admin-panel/bank-accounts/ HTTP/1.1" 200 195712
+2026-11-15 16:41:03 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:41:05 [INFO] django.server: "GET /accounts/admin-panel/bank-accounts/new/ HTTP/1.1" 200 197251
+2026-11-15 16:41:13 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274057
+2026-11-15 16:41:16 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:41:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:41:26 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-15 16:41:32 [INFO] django.server: "GET /reports/overdue/ HTTP/1.1" 200 194718
+2026-11-15 16:41:34 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:41:37 [INFO] django.server: "GET /reports/ HTTP/1.1" 200 202237
+2026-11-15 16:41:39 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:41:40 [INFO] django.server: "GET /reports/disbursements/ HTTP/1.1" 200 197159
+2026-11-15 16:41:42 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:41:45 [INFO] django.server: "GET /loans/9941ca84-6d9d-48e8-9c82-1aeeac45d072/ HTTP/1.1" 200 209047
+2026-11-15 16:41:47 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:41:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:41:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:41:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:41:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:41:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:42:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:42:24 [INFO] django.server: "GET /loans/apply/ HTTP/1.1" 200 212248
+2026-11-15 16:42:26 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:42:29 [INFO] django.server: "GET /loans/products/ HTTP/1.1" 200 199352
+2026-11-15 16:42:30 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:42:47 [INFO] django.server: "GET /clients/ HTTP/1.1" 200 206638
+2026-11-15 16:42:49 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:42:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:42:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:42:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:42:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:42:50 [INFO] django.server: "GET /clients/new/ HTTP/1.1" 200 219112
+2026-11-15 16:42:53 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:42:53 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:43:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:43:47 [INFO] django.server: "GET /payments/ HTTP/1.1" 200 211068
+2026-11-15 16:43:48 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:43:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:43:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:43:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:43:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:43:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:44:22 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:44:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:44:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:44:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:44:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:44:52 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:45:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:45:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:45:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:45:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:46:02 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:46:32 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:46:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:46:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:46:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:46:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:47:02 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:47:32 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:47:44 [INFO] django.utils.autoreload: C:\Users\USER\abacash\accounts\permissions.py changed, reloading.
+2026-11-15 16:47:44 [INFO] django.utils.autoreload: C:\Users\USER\abacash\accounts\views.py changed, reloading.
+2026-11-15 16:47:46 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:47:46 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:47:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:47:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:47:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:47:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:47:53 [INFO] django.server: "GET /payments/ HTTP/1.1" 200 211068
+2026-11-15 16:47:55 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:48:03 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:48:14 [INFO] django.server: "GET /accounts/admin-panel/branches/ HTTP/1.1" 200 203847
+2026-11-15 16:48:17 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:48:32 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:48:50 [INFO] django.utils.autoreload: C:\Users\USER\abacash\accounts\views.py changed, reloading.
+2026-11-15 16:48:50 [INFO] django.utils.autoreload: C:\Users\USER\abacash\accounts\views.py changed, reloading.
+2026-11-15 16:48:53 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:48:53 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:48:54 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:48:54 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:49:03 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:49:32 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:49:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:49:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:49:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:49:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:50:02 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:50:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:50:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:50:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:50:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:51:30 [INFO] django.server: "GET /clients/ HTTP/1.1" 200 206638
+2026-11-15 16:51:32 [INFO] django.server: "GET /clients/e0d66388-1585-4015-82ed-0a336af542f2/ HTTP/1.1" 200 204601
+2026-11-15 16:51:32 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:51:32 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:51:32 [INFO] django.server: "GET /media/aba/photos/client_e0d66388-1585-4015-82ed-0a336af542f2/ID.jfif HTTP/1.1" 200 61690
+2026-11-15 16:51:33 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:51:35 [INFO] django.server: "GET /loans/b4f801de-7d6b-4539-b28c-a5e992ffca74/ HTTP/1.1" 200 206713
+2026-11-15 16:51:37 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:51:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:51:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:51:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:51:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:52:02 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:52:32 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:52:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:52:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:52:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:52:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:52:56 [INFO] django.server: "GET /loans/calculator/preview/?principal=500000&monthly_rate=5&term_months=12&frequency=MONTHLY&method=FLAT HTTP/1.1" 200 172
+2026-11-15 16:53:03 [INFO] django.server: "GET /loans/b4f801de-7d6b-4539-b28c-a5e992ffca74/ HTTP/1.1" 200 206713
+2026-11-15 16:53:05 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:53:09 [INFO] django.server: "GET /clients/ HTTP/1.1" 200 206638
+2026-11-15 16:53:11 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:53:14 [INFO] django.server: "GET /clients/new/ HTTP/1.1" 200 219112
+2026-11-15 16:53:16 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:53:27 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:53:30 [INFO] django.server: "GET /clients/ HTTP/1.1" 200 206638
+2026-11-15 16:53:32 [INFO] django.server: "GET /loans/ HTTP/1.1" 200 215869
+2026-11-15 16:53:32 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:53:33 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:53:36 [INFO] django.server: "GET /loans/fe7abb26-e776-4a2a-8fef-073b77d2bbde/ HTTP/1.1" 200 211830
+2026-11-15 16:53:37 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:53:40 [INFO] django.server: "GET /payments/ HTTP/1.1" 200 211068
+2026-11-15 16:53:43 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:53:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:53:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:53:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:53:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:53:57 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:54:05 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\admin.py changed, reloading.
+2026-11-15 16:54:05 [INFO] django.utils.autoreload: C:\Users\USER\abacash\tenants\admin.py changed, reloading.
+2026-11-15 16:54:10 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:54:10 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:54:12 [INFO] django.utils.autoreload: C:\Users\USER\abacash\tenants\admin.py changed, reloading.
+2026-11-15 16:54:12 [INFO] django.server: "GET /loans/products/ HTTP/1.1" 200 199352
+2026-11-15 16:54:12 [INFO] django.utils.autoreload: C:\Users\USER\abacash\tenants\admin.py changed, reloading.
+2026-11-15 16:54:15 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:54:15 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 16:54:21 [INFO] django.server: "GET /clients/ HTTP/1.1" 200 206638
+2026-11-15 16:54:23 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:54:24 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274057
+2026-11-15 16:54:26 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 16:54:28 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:54:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:54:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:54:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:54:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:54:57 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:55:27 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:55:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:55:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:55:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:55:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:55:57 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:56:27 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:56:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:56:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:56:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:56:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:56:57 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:57:27 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:57:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:57:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:57:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:57:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:57:57 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:58:27 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:58:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:58:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:58:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:58:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:58:57 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:59:27 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 16:59:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:59:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:59:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 16:59:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 16:59:57 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:00:27 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:00:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:00:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:00:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:00:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:00:57 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:01:28 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:01:47 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274057
+2026-11-15 17:01:49 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274057
+2026-11-15 17:01:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:01:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:01:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:01:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:01:51 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:01:52 [INFO] django.server: "GET /clients/ HTTP/1.1" 200 206638
+2026-11-15 17:01:53 [INFO] django.server: "GET /clients/ HTTP/1.1" 200 206638
+2026-11-15 17:01:54 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:01:55 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:01:55 [INFO] django.server: "GET /loans/ HTTP/1.1" 200 215869
+2026-11-15 17:01:57 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:02:01 [INFO] django.server: "GET /loans/ HTTP/1.1" 200 215869
+2026-11-15 17:02:03 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:02:04 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/?draft_id=b4f801de-7d6b-4539-b28c-a5e992ffca74 HTTP/1.1" 200 216628
+2026-11-15 17:02:06 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:02:08 [INFO] django.server: "POST /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/?draft_id=b4f801de-7d6b-4539-b28c-a5e992ffca74 HTTP/1.1" 302 0
+2026-11-15 17:02:08 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/step3/ HTTP/1.1" 200 214351
+2026-11-15 17:02:10 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:02:11 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:02:16 [INFO] django.server: "POST /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/step3/ HTTP/1.1" 302 0
+2026-11-15 17:02:16 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/review/?draft_id=b4f801de-7d6b-4539-b28c-a5e992ffca74 HTTP/1.1" 200 205680
+2026-11-15 17:02:18 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:02:22 [INFO] django.server: "POST /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/review/?draft_id=b4f801de-7d6b-4539-b28c-a5e992ffca74 HTTP/1.1" 302 0
+2026-11-15 17:02:22 [INFO] django.server: "GET /loans/b4f801de-7d6b-4539-b28c-a5e992ffca74/ HTTP/1.1" 200 212637
+2026-11-15 17:02:24 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:02:41 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:02:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:02:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:02:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:02:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:02:50 [INFO] django.server: "POST /loans/b4f801de-7d6b-4539-b28c-a5e992ffca74/query/ HTTP/1.1" 302 0
+2026-11-15 17:02:51 [INFO] django.server: "GET /loans/b4f801de-7d6b-4539-b28c-a5e992ffca74/ HTTP/1.1" 200 212878
+2026-11-15 17:02:53 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:02:55 [INFO] django.server: "GET /loans/ HTTP/1.1" 200 214705
+2026-11-15 17:02:57 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:03:03 [INFO] django.server: "GET /loans/b4f801de-7d6b-4539-b28c-a5e992ffca74/ HTTP/1.1" 200 212336
+2026-11-15 17:03:04 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:03:11 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:03:41 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:03:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:03:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:03:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:03:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:04:11 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:04:41 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:04:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:04:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:04:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:04:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:05:11 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:05:50 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:05:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:05:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:05:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:05:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:06:20 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:06:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:06:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:06:50 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:06:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:06:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:07:20 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:07:50 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:07:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:07:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:07:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:07:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:08:20 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:08:50 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:08:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:08:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:08:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:08:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:08:52 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 17:08:53 [INFO] django.utils.autoreload: C:\Users\USER\abacash\loans\views.py changed, reloading.
+2026-11-15 17:08:54 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 17:08:55 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-15 17:09:25 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:09:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:09:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:09:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:09:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:09:54 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:10:24 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:10:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:10:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:10:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:10:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:10:54 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:11:24 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:11:36 [INFO] django.server: "GET /loans/b4f801de-7d6b-4539-b28c-a5e992ffca74/ HTTP/1.1" 200 212336
+2026-11-15 17:11:37 [INFO] django.server: "GET /loans/b4f801de-7d6b-4539-b28c-a5e992ffca74/ HTTP/1.1" 200 212336
+2026-11-15 17:11:37 [INFO] django.server: "GET /loans/b4f801de-7d6b-4539-b28c-a5e992ffca74/ HTTP/1.1" 200 212336
+2026-11-15 17:11:38 [INFO] django.server: "GET /loans/b4f801de-7d6b-4539-b28c-a5e992ffca74/ HTTP/1.1" 200 212336
+2026-11-15 17:11:40 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:11:46 [INFO] django.server: "GET /clients/ HTTP/1.1" 200 206638
+2026-11-15 17:11:48 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:11:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:11:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:11:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:11:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:11:51 [INFO] django.server: "GET /loans/ HTTP/1.1" 200 214705
+2026-11-15 17:11:53 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:11:53 [INFO] django.server: "GET /loans/ HTTP/1.1" 200 214705
+2026-11-15 17:11:54 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:11:55 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:12:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:12:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:12:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:12:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:13:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:13:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:13:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:13:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:14:32 [INFO] django.server: "GET /loans/ HTTP/1.1" 200 214705
+2026-11-15 17:14:32 [INFO] django.server: "GET /media/aba/company/ID.jfif HTTP/1.1" 200 61690
+2026-11-15 17:14:32 [INFO] django.server: "GET /static/css/loan-calculator.css?v=2 HTTP/1.1" 200 9527
+2026-11-15 17:14:32 [INFO] django.server: "GET /static/js/aba.js?v=theme-dock-3 HTTP/1.1" 200 36062
+2026-11-15 17:14:32 [INFO] django.server: "GET /manifest.webmanifest HTTP/1.1" 200 791
+2026-11-15 17:14:32 [INFO] django.server: "GET /static/js/loan-calculator.js?v=2 HTTP/1.1" 200 8879
+2026-11-15 17:14:37 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:14:37 [WARNING] django.request: Not Found: /favicon.ico
+2026-11-15 17:14:37 [WARNING] django.server: "GET /favicon.ico HTTP/1.1" 404 3755
+2026-11-15 17:14:37 [INFO] django.server: "GET / HTTP/1.1" 302 0
+2026-11-15 17:14:37 [INFO] django.server: "GET /offline/ HTTP/1.1" 200 194857
+2026-11-15 17:14:37 [INFO] django.server: "GET /accounts/dashboard/ HTTP/1.1" 200 274057
+2026-11-15 17:14:47 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:14:49 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 264847
+2026-11-15 17:14:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:14:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:14:51 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:15:20 [INFO] django.server: "GET /accounts/dashboard/?period=6&date_from=2026-11-15&date_to=2026-11-15&branch= HTTP/1.1" 200 4039
+2026-11-15 17:15:38 [INFO] django.server: "GET /payments/ HTTP/1.1" 200 211068
+2026-11-15 17:15:39 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:15:46 [INFO] django.server: "GET /payments/receipt/8451842f-82b8-461f-899c-b151d2ba365c/ HTTP/1.1" 200 212599
+2026-11-15 17:15:48 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:15:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:15:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:15:57 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 17:16:06 [INFO] django.server: "GET /loans/products/ HTTP/1.1" 200 199352
+2026-11-15 17:16:09 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:16:11 [INFO] django.server: "GET /loans/products/new/ HTTP/1.1" 200 5246
+2026-11-15 17:16:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:16:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:17:00 [INFO] django.server: "GET /loans/apply/ HTTP/1.1" 200 212248
+2026-11-15 17:17:02 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:17:06 [INFO] django.server: "GET /loans/apply/e0d66388-1585-4015-82ed-0a336af542f2/ HTTP/1.1" 200 212229
+2026-11-15 17:17:08 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:17:11 [INFO] django.server: "GET /loans/ HTTP/1.1" 200 214705
+2026-11-15 17:17:13 [INFO] django.server: "GET /sw.js HTTP/1.1" 200 2035
+2026-11-15 17:17:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:17:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:18:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:18:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:19:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:19:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:20:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:20:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:21:18 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 17:21:19 [INFO] django.server: "GET /static/css/aba.css HTTP/1.1" 200 53135
+2026-11-15 17:21:19 [INFO] django.server: "GET /static/images/logo.png HTTP/1.1" 200 1420572
+2026-11-15 17:21:19 [INFO] django.server: "GET /static/images/aba.png HTTP/1.1" 200 950561
+2026-11-15 17:21:20 [WARNING] django.request: Not Found: /favicon.ico
+2026-11-15 17:21:20 [WARNING] django.server: "GET /favicon.ico HTTP/1.1" 404 4726
+2026-11-15 17:21:28 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 17:21:28 [INFO] django.server: "GET /static/css/aba.css HTTP/1.1" 200 53135
+2026-11-15 17:21:28 [INFO] django.server: "GET /static/images/logo.png HTTP/1.1" 200 1420572
+2026-11-15 17:21:28 [INFO] django.server: "GET /static/images/aba.png HTTP/1.1" 200 950561
+2026-11-15 17:21:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:21:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:22:41 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 17:22:45 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 17:22:45 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 17:22:45 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 17:22:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:22:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:22:58 [WARNING] django.request: Not Found: /favicon.ico
+2026-11-15 17:22:58 [WARNING] django.server: "GET /favicon.ico HTTP/1.1" 404 4726
+2026-11-15 17:23:00 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 17:23:00 [INFO] django.server: "GET /static/css/aba.css HTTP/1.1" 200 53135
+2026-11-15 17:23:00 [INFO] django.server: "GET /static/images/logo.png HTTP/1.1" 200 1420572
+2026-11-15 17:23:01 [INFO] django.server: "GET /static/images/aba.png HTTP/1.1" 200 950561
+2026-11-15 17:23:06 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 17:23:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:23:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:24:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:24:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:25:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:25:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:26:23 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-15 17:26:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:26:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:27:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:27:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:28:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:28:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:29:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:29:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:30:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:30:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:31:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:31:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:32:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:32:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:33:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:33:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:34:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:34:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:35:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:35:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:36:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:36:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:37:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:37:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:38:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:38:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:39:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:39:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:40:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:40:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:41:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:41:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:42:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:42:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:43:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:43:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:44:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:44:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:45:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:45:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:46:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:46:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:47:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:47:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:48:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:48:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:49:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:49:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:50:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:50:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:51:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:51:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:52:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:52:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:53:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:53:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:54:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:54:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:55:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:55:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:56:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:56:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:57:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:57:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:58:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:58:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 17:59:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 17:59:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:00:49 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:00:49 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:01:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:01:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:02:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:02:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:03:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:03:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:04:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:04:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:05:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:05:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:06:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:06:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:07:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:07:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:08:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:08:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:09:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:09:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:10:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:10:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:11:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:11:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:12:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:12:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:13:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:13:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:14:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:14:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:15:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:15:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:16:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:16:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:17:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:17:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:18:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:18:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:19:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:19:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:20:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:20:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:21:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:21:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:22:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:22:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:23:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:23:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:24:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:24:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:25:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:25:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:26:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:26:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:27:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:27:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:28:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:28:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:29:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:29:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:30:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:30:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:31:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:31:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:32:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:32:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:33:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:33:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:34:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:34:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:35:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:35:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:36:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:36:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:45:53 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:45:53 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:46:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:46:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:47:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:47:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:48:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:48:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:49:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:49:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:50:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:50:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:51:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:51:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:52:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:52:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:53:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:53:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:54:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:54:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:55:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:55:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:56:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:56:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:57:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:57:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:58:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:58:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 18:59:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 18:59:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:00:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:00:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:01:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:01:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:02:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:02:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:03:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:03:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:04:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:04:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:05:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:05:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:06:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:06:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:07:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:07:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:08:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:08:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:09:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:09:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:10:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:10:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:11:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:11:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:12:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:12:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:13:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:13:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:14:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:14:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:15:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:15:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:16:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:16:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:17:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:17:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:18:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:18:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:19:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:19:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:25:01 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:25:01 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:25:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:25:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:26:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:26:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:27:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:27:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:28:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:28:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:29:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:29:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 19:30:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 19:30:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:01:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:01:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:02:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:02:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:03:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:03:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:04:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:04:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:05:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:05:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:06:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:06:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:08:52 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:08:52 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:09:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:09:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:10:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:10:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:11:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:11:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:12:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:12:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:13:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:13:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:14:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:14:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:15:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:15:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:16:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:16:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:17:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:17:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:18:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:18:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:19:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:19:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:20:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:20:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:21:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:21:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:22:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:22:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:23:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:23:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:24:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:24:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:25:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:25:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:26:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:26:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:27:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:27:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:28:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:28:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:29:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:29:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:30:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:30:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:31:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:31:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:32:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:32:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:33:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:33:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:34:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:34:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:35:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:35:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:36:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:36:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:37:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:37:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:38:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:38:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:39:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:39:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:40:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:40:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:41:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:41:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:42:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:42:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:43:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:43:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:44:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:44:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:45:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:45:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:46:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:46:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:47:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:47:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:48:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:48:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:49:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:49:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:50:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:50:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:51:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:51:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:52:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:52:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:53:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:53:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:54:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:54:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:55:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:55:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:56:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:56:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:57:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:57:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:58:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:58:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 20:59:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 20:59:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:00:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:00:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:01:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:01:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:02:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:02:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:03:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:03:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:04:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:04:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:05:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:05:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:06:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:06:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:07:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:07:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:08:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:08:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:09:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:09:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:10:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:10:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:11:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:11:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:12:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:12:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:13:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:13:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:14:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:14:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:15:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:15:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:16:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:16:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:17:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:17:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:18:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:18:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:19:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:19:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:20:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:20:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:21:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:21:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:22:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:22:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:23:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:23:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:24:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:24:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:25:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:25:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:34:26 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:34:26 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:34:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:34:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:35:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:35:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:36:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:36:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 21:37:50 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 21:37:50 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:08:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:08:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:09:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:09:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:10:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:10:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:11:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:11:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:12:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:12:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:13:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:13:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:14:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:14:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:15:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:15:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:16:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:16:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:17:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:17:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:18:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:18:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:19:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:19:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:20:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:20:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:21:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:21:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:22:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:22:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:23:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:23:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:24:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:24:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:25:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:25:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:26:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:26:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:27:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:27:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:28:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:28:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:29:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:29:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:30:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:30:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:31:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:31:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:32:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:32:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:33:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:33:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:34:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:34:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-15 23:35:47 [WARNING] django.request: Not Found: /api/ping/
+2026-11-15 23:35:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721

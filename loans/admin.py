@@ -1,11 +1,13 @@
 from django.contrib import admin
 
+from common.admin import CEOOnlyActionsAdminMixin
 from .models import Loan, LoanProduct, LoanSchedule
 from .models import LoanScheduleExtension
 
 
 @admin.register(LoanProduct)
-class LoanProductAdmin(admin.ModelAdmin):
+class LoanProductAdmin(CEOOnlyActionsAdminMixin, admin.ModelAdmin):
+    ceo_only_readonly_fields = ("is_active",)
     list_display = (
         "name",
         "interest_rate_monthly",
@@ -32,7 +34,15 @@ class LoanProductAdmin(admin.ModelAdmin):
 
 
 @admin.register(Loan)
-class LoanAdmin(admin.ModelAdmin):
+class LoanAdmin(CEOOnlyActionsAdminMixin, admin.ModelAdmin):
+    ceo_only_readonly_fields = (
+        "status",
+        "write_off_reason",
+        "write_off_approved_by",
+        "reinstated_at",
+        "reinstated_by",
+        "reinstatement_reason",
+    )
     list_display = (
         "loan_number",
         "client",
@@ -49,7 +59,14 @@ class LoanAdmin(admin.ModelAdmin):
 
 
 @admin.register(LoanSchedule)
-class LoanScheduleAdmin(admin.ModelAdmin):
+class LoanScheduleAdmin(CEOOnlyActionsAdminMixin, admin.ModelAdmin):
+    ceo_only_readonly_fields = (
+        "amount_paid",
+        "paid_date",
+        "status",
+        "waived_by_writeoff",
+        "paid_by_payment",
+    )
     list_display = (
         "loan",
         "period_number",
@@ -65,7 +82,7 @@ class LoanScheduleAdmin(admin.ModelAdmin):
 
 
 @admin.register(LoanScheduleExtension)
-class LoanScheduleExtensionAdmin(admin.ModelAdmin):
+class LoanScheduleExtensionAdmin(CEOOnlyActionsAdminMixin, admin.ModelAdmin):
     list_display = (
         "schedule_entry",
         "old_due_date",

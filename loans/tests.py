@@ -110,6 +110,34 @@ class ProcessingFeeResolutionTests(SimpleTestCase):
         )
         self.assertEqual(resolve_processing_fee_rate(product, settings), Decimal("0"))
 
+    def test_ceo_override_can_calculate_a_disabled_products_processing_fee(self):
+        settings = CompanySettings(
+            processing_fee_method="PERCENTAGE",
+            default_processing_fee_percent=Decimal("2.25"),
+        )
+        product = SimpleNamespace(
+            processing_fee_enabled=False,
+            processing_fee_percent=Decimal("1.00"),
+        )
+
+        self.assertEqual(
+            calculate_processing_fee_amount(
+                Decimal("1000000"),
+                product=product,
+                company_settings=settings,
+                allow_disabled_product_fee=True,
+            ),
+            Decimal("22500.00"),
+        )
+        self.assertEqual(
+            resolve_processing_fee_rate(
+                product,
+                settings,
+                allow_disabled_product_fee=True,
+            ),
+            Decimal("2.25"),
+        )
+
     def test_waived_loan_processing_fee_stays_zero(self):
         loan = Loan(
             principal_amount=Decimal("1000000"),
@@ -117,6 +145,71 @@ class ProcessingFeeResolutionTests(SimpleTestCase):
         )
 
         self.assertEqual(loan.effective_processing_fee, Decimal("0"))
+
+
+class CEOOnlyLoanActionTests(SimpleTestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def _request(self, method, role):
+        request = getattr(self.factory, method)("/")
+        request.user = SimpleNamespace(role=role, is_authenticated=True)
+        return request
+
+    @patch("loans.views.messages.error")
+    def test_non_ceo_cannot_regenerate_or_undo_schedule(self, show_error):
+        actions = (
+            (loan_views.loan_regenerate_schedule, "get"),
+            (loan_views.loan_undo_regenerate_schedule, "post"),
+        )
+        for action, method in actions:
+            with self.subTest(action=action.__name__):
+                response = action(self._request(method, "MANAGER"), pk="loan-id")
+                self.assertEqual(response.status_code, 302)
+                self.assertEqual(response.url, reverse("accounts:dashboard"))
+        self.assertEqual(show_error.call_count, 2)
+
+    @patch("loans.views.messages.error")
+    @patch("loans.views.get_object_or_404")
+    def test_non_ceo_cannot_recall_an_application(self, get_object, show_error):
+        response = loan_views.loan_recall(
+            self._request("post", "MANAGER"),
+            loan_id="loan-id",
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("accounts:dashboard"))
+        get_object.assert_not_called()
+        show_error.assert_called_once()
+
+    @patch("loans.views.messages.success")
+    @patch("loans.views.get_object_or_404")
+    def test_ceo_can_delete_a_draft_loan(self, get_object, show_success):
+        loan = SimpleNamespace(loan_number="LN-100", delete=Mock())
+        get_object.return_value = loan
+
+        response = loan_views.loan_draft_delete(
+            self._request("post", "CEO"),
+            pk="loan-id",
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("loans:list"))
+        loan.delete.assert_called_once_with()
+        show_success.assert_called_once()
+
+    @patch("loans.views.messages.error")
+    @patch("loans.views.get_object_or_404")
+    def test_non_ceo_cannot_delete_a_draft_loan(self, get_object, show_error):
+        response = loan_views.loan_draft_delete(
+            self._request("post", "MANAGER"),
+            pk="loan-id",
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("accounts:dashboard"))
+        get_object.assert_not_called()
+        show_error.assert_called_once()
 
 
 class LoanFeeSwitchTests(SimpleTestCase):
@@ -152,6 +245,34 @@ class LoanFeeSwitchTests(SimpleTestCase):
             LoanProduct.InterestMethod.COMPOUND,
         )
 
+    def test_application_user_without_permission_keeps_existing_method(self):
+        existing_loan = SimpleNamespace(
+            product_id=self.product.pk,
+            interest_method=LoanProduct.InterestMethod.COMPOUND,
+        )
+
+        self.assertEqual(
+            loan_views._resolve_loan_interest_method(
+                self.product,
+                {"interest_method": LoanProduct.InterestMethod.FLAT_RATE},
+                existing_loan,
+                can_change=False,
+            ),
+            LoanProduct.InterestMethod.COMPOUND,
+        )
+
+    def test_application_user_without_permission_uses_product_method_for_new_product(self):
+        posted_method = LoanProduct.InterestMethod.COMPOUND
+
+        self.assertEqual(
+            loan_views._resolve_loan_interest_method(
+                self.product,
+                {"interest_method": posted_method},
+                can_change=False,
+            ),
+            self.product.interest_method,
+        )
+
     def test_invalid_application_method_is_rejected(self):
         with self.assertRaises(ValueError):
             loan_views._resolve_loan_interest_method(
@@ -169,7 +290,7 @@ class LoanFeeSwitchTests(SimpleTestCase):
         self.assertFalse(processing_enabled)
         self.assertTrue(penalty_enabled)
 
-    def test_product_fee_defaults_cannot_be_overridden_by_an_applicant(self):
+    def test_ceo_can_override_product_fee_defaults(self):
         self.product.processing_fee_enabled = False
         self.product.penalty_enabled = False
 
@@ -178,6 +299,19 @@ class LoanFeeSwitchTests(SimpleTestCase):
                 self.product,
                 {"processing_fee_enabled": "on", "penalty_enabled": "on"},
                 can_override=True,
+            ),
+            (True, True),
+        )
+
+    def test_non_ceo_cannot_enable_product_disabled_fees(self):
+        self.product.processing_fee_enabled = False
+        self.product.penalty_enabled = False
+
+        self.assertEqual(
+            loan_views._resolve_loan_fee_switches(
+                self.product,
+                {"processing_fee_enabled": "on", "penalty_enabled": "on"},
+                can_override=False,
             ),
             (False, False),
         )
@@ -197,6 +331,25 @@ class LoanFeeSwitchTests(SimpleTestCase):
                 existing_loan=existing_loan,
             ),
             (False, False),
+        )
+
+    def test_non_ceo_preserves_existing_ceo_fee_overrides(self):
+        self.product.processing_fee_enabled = False
+        self.product.penalty_enabled = False
+        existing_loan = SimpleNamespace(
+            product_id=self.product.pk,
+            processing_fee_enabled=True,
+            penalty_enabled=True,
+        )
+
+        self.assertEqual(
+            loan_views._resolve_loan_fee_switches(
+                self.product,
+                {},
+                can_override=False,
+                existing_loan=existing_loan,
+            ),
+            (True, True),
         )
 
 
@@ -225,7 +378,7 @@ class LoanReviewDecisionTests(SimpleTestCase):
         request.user = self.user
         return request
 
-    def test_query_saves_reason_and_keeps_loan_pending(self):
+    def test_query_saves_reason_and_returns_loan_to_draft(self):
         reason = "Please provide the client's recent payslip."
         request = self.review_request(reason)
 
@@ -236,10 +389,12 @@ class LoanReviewDecisionTests(SimpleTestCase):
             response = loan_views.loan_query(request, pk=self.loan.pk)
 
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(self.loan.status, Loan.Status.PENDING)
+        self.assertEqual(self.loan.status, Loan.Status.DRAFT)
         self.assertEqual(self.loan.query_reason, reason)
         self.assertIs(self.loan.reviewed_by, self.user)
-        self.loan.save.assert_called_once_with(update_fields=["reviewed_by", "query_reason"])
+        self.loan.save.assert_called_once_with(
+            update_fields=["status", "reviewed_by", "query_reason"]
+        )
 
     def test_query_requires_a_reason(self):
         request = self.review_request("")

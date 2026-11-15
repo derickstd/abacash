@@ -9,7 +9,9 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db.models import F
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.http import HttpResponse
 from django.test import RequestFactory, SimpleTestCase, TestCase, override_settings
+from django.urls import reverse
 from PIL import Image
 
 from .branch_scope import get_single_active_branch_id, resolve_branch_for_write
@@ -23,6 +25,7 @@ from .views import (
     _quick_form_saved,
     _validated_signature_upload,
 )
+from . import views as account_views
 from tenants.provisioning import (
     DEFAULT_EXPENSE_CATEGORIES,
     DEFAULT_PRODUCTS,
@@ -30,6 +33,41 @@ from tenants.provisioning import (
     _seed_expense_categories,
     _seed_products,
 )
+
+
+class CEOOnlyAccountActionTests(SimpleTestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    @patch("accounts.views.messages.error")
+    @patch("accounts.views.get_object_or_404")
+    def test_non_ceo_cannot_open_expense_deletion(self, get_object, show_error):
+        request = self.factory.get("/")
+        request.user = SimpleNamespace(is_authenticated=True, is_ceo=False)
+
+        response = account_views.expense_delete(request, pk="expense-id")
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("accounts:dashboard"))
+        get_object.assert_not_called()
+        show_error.assert_called_once()
+
+    @patch("accounts.views.render", return_value=HttpResponse())
+    @patch("accounts.views.get_object_or_404")
+    def test_ceo_can_open_expense_deletion_confirmation(self, get_object, render):
+        request = self.factory.get("/")
+        request.user = SimpleNamespace(is_authenticated=True, is_ceo=True)
+        expense = SimpleNamespace()
+        get_object.return_value = expense
+
+        response = account_views.expense_delete(request, pk="expense-id")
+
+        self.assertEqual(response.status_code, 200)
+        render.assert_called_once_with(
+            request,
+            "accounts/expense_confirm_delete.html",
+            {"expense": expense},
+        )
 
 
 class DefaultBranchSelectionTests(SimpleTestCase):

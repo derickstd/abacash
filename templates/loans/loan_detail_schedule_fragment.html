@@ -4,7 +4,7 @@
   <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
     <span><span class="card-title">Repayment Schedule</span></span>
     <span style="display:flex;gap:8px;align-items:center;">
-      {% if perms.accounts.can_regenerate_schedule %}
+      {% if user.role == "CEO" %}
       <button type="button" class="btn btn-secondary btn-sm" 
               hx-get="{% url 'loans:regenerate_schedule' loan.pk %}"
               hx-target="#modal-body" hx-swap="innerHTML"

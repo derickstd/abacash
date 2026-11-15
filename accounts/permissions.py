@@ -55,15 +55,17 @@ PERMISSIONS = [
     # --- Loans --------------------------------------------------------------
     ("can_approve_loans",            "Approve or renew loans",                   [GROUP_MANAGER, GROUP_CEO]),
     ("can_approve_unlimited_loans",  "Approve loans above the standard manager limit", [GROUP_CEO]),
-    ("can_regenerate_schedule",      "Regenerate a loan's repayment schedule",   [GROUP_MANAGER, GROUP_CEO]),
+    ("can_regenerate_schedule",      "Regenerate a loan's repayment schedule (CEO-only)", [GROUP_CEO]),
+    ("can_override_loan_fees",       "Override processing fees and penalties per loan", [GROUP_CEO]),
+    ("can_change_loan_interest_method", "Change a loan's interest method",       [GROUP_CEO]),
     ("can_write_off_loans",          "Write off loans",                          [GROUP_CEO]),
     ("can_backdate_transactions",    "Back-date disbursements/payments",         [GROUP_CEO]),
-    ("can_edit_any_loan",            "Edit or delete loans created by others",   [GROUP_MANAGER, GROUP_CEO]),
+    ("can_edit_any_loan",            "Edit loans created by others",              [GROUP_MANAGER, GROUP_CEO]),
     ("can_view_all_loan_products",   "View inactive/all loan products",          [GROUP_CEO]),
 
     # --- Clients & payments -------------------------------------------------
     ("can_manage_clients",           "Manage all clients, not just own branch",  [GROUP_MANAGER, GROUP_CEO]),
-    ("can_manage_payments",          "Edit or reverse recorded payments",        [GROUP_MANAGER, GROUP_CEO]),
+    ("can_manage_payments",          "Edit or reverse recorded payments (CEO-only)", [GROUP_CEO]),
 
     # --- Reports & branch visibility ----------------------------------------
     ("can_view_reports",             "View reports",                             [GROUP_MANAGER, GROUP_CEO]),
