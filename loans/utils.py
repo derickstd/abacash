@@ -126,7 +126,12 @@ def _parse_processing_fee_range_amount(principal: Decimal, ranges_text: str) -> 
     return Decimal("0")
 
 
-def calculate_processing_fee_amount(principal, product=None, company_settings=None) -> Decimal:
+def calculate_processing_fee_amount(
+    principal,
+    product=None,
+    company_settings=None,
+    allow_disabled_product_fee=False,
+) -> Decimal:
     """Calculate the processing fee respecting CompanySettings.processing_fee_method.
 
     PERCENTAGE → default_processing_fee_percent (company) or product rate
@@ -135,7 +140,11 @@ def calculate_processing_fee_amount(principal, product=None, company_settings=No
     principal = Decimal(str(principal or "0"))
     if principal <= 0:
         return Decimal("0")
-    if product is not None and not getattr(product, "processing_fee_enabled", True):
+    if (
+        product is not None
+        and not getattr(product, "processing_fee_enabled", True)
+        and not allow_disabled_product_fee
+    ):
         return Decimal("0")
 
     if company_settings is None:
@@ -153,11 +162,19 @@ def calculate_processing_fee_amount(principal, product=None, company_settings=No
             getattr(company_settings, "processing_fee_ranges", "") or "",
         )
 
-    rate = resolve_processing_fee_rate(product, company_settings)
+    rate = resolve_processing_fee_rate(
+        product,
+        company_settings,
+        allow_disabled_product_fee=allow_disabled_product_fee,
+    )
     return (principal * rate / Decimal("100")).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
 
-def resolve_processing_fee_rate(product=None, company_settings=None) -> Decimal:
+def resolve_processing_fee_rate(
+    product=None,
+    company_settings=None,
+    allow_disabled_product_fee=False,
+) -> Decimal:
     """Return the processing fee percentage to use.
 
     Priority:
@@ -165,7 +182,11 @@ def resolve_processing_fee_rate(product=None, company_settings=None) -> Decimal:
     2. Product-level processing_fee_percent
     3. Zero
     """
-    if product is not None and not getattr(product, "processing_fee_enabled", True):
+    if (
+        product is not None
+        and not getattr(product, "processing_fee_enabled", True)
+        and not allow_disabled_product_fee
+    ):
         return Decimal("0")
 
     if company_settings is None:
@@ -302,6 +323,7 @@ def build_loan_schedule_context(
     company_settings=None,
     interest_rate_monthly: Decimal | None = None,
     interest_method: str | None = None,
+    allow_disabled_product_fee: bool = False,
 ) -> tuple[list[dict], dict, Decimal, Decimal, str]:
     """Build a schedule and the fee/totals context used across the app.
 
@@ -346,8 +368,13 @@ def build_loan_schedule_context(
             principal,
             product=product,
             company_settings=company_settings,
+            allow_disabled_product_fee=allow_disabled_product_fee,
         )
-        fee_percent = resolve_processing_fee_rate(product, company_settings)
+        fee_percent = resolve_processing_fee_rate(
+            product,
+            company_settings,
+            allow_disabled_product_fee=allow_disabled_product_fee,
+        )
         product_name = getattr(product, "name", "") or "Product"
         fee_source = (
             "Company settings (range)"

@@ -16,6 +16,10 @@
   .wiz-line.done { background:var(--success); }
   .app-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:20px; align-items:start; }
   @media(max-width:1024px){ .app-grid { grid-template-columns:1fr; } }
+  .loan-terms-row { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .fee-override-options { display:flex; flex-wrap:wrap; align-items:center; gap:8px 20px; }
+  .fee-override-options label { display:flex; align-items:center; gap:8px; margin:0; }
+  @media(max-width:600px){ .loan-terms-row { grid-template-columns:1fr; } }
   .fee-row { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border); font-size:13px; }
   .fee-row:last-child { border-bottom:none; font-weight:700; font-size:14px; }
   .tier-row.match { background:rgba(37,99,235,.07); font-weight:700; }
@@ -63,6 +67,10 @@
               hx-target="#schedule-panel"
               hx-include="#loan-form">
           {% csrf_token %}
+          <input type="hidden" name="client_id" value="{{ client.pk }}">
+          {% if loan %}
+          <input type="hidden" name="draft_id" value="{{ loan.pk }}">
+          {% endif %}
 
           {% if can_choose_branch %}
           <div class="form-group">
@@ -98,22 +106,26 @@
             <div id="product-hint" style="font-size:12px;color:var(--text-muted);margin-top:4px;"></div>
           </div>
 
-          <div class="form-group">
-            <label for="interest_method">Interest Method <span style="color:var(--danger);">*</span></label>
-            <select name="interest_method" id="interest_method" required>
-              <option value="">— Select interest method —</option>
-              {% for value, label in interest_method_choices %}
-              <option value="{{ value }}" {% if form_data.interest_method == value %}selected{% endif %}>{{ label }}</option>
-              {% endfor %}
-            </select>
-            
-          </div>
-
-          <div class="form-group">
-            <label for="principal">Loan Amount ({% currency_symbol %}) <span style="color:var(--danger);">*</span></label>
-            <input type="number" name="principal" id="principal"
-                   value="{{ form_data.principal|default:'' }}"
-                   placeholder="e.g. 1,000,000" min="0" step="1000" required>
+          <div class="loan-terms-row">
+            <div class="form-group">
+              <label for="interest_method">Interest Method <span style="color:var(--danger);">*</span></label>
+              <select name="interest_method" id="interest_method" required
+                      {% if not can_change_loan_interest_method %}disabled{% endif %}>
+                <option value="">— Select interest method —</option>
+                {% for value, label in interest_method_choices %}
+                <option value="{{ value }}" {% if form_data.interest_method == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+              {% if not can_change_loan_interest_method %}
+              <div class="form-hint">Only users authorized by an administrator can change the interest method.</div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              <label for="principal">Loan Amount ({% currency_symbol %}) <span style="color:var(--danger);">*</span></label>
+              <input type="number" name="principal" id="principal"
+                     value="{{ form_data.principal|default:'' }}"
+                     placeholder="e.g. 1,000,000" min="0" step="1000" required>
+            </div>
           </div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
@@ -139,22 +151,30 @@
                       placeholder="What will the client use this loan for?">{{ form_data.purpose|default:'' }}</textarea>
           </div>
 
-          {% if can_override_loan_fees %}
           <div class="form-group" style="padding:12px 14px;border:1px solid var(--border);border-radius:10px;">
             <div style="font-weight:700;margin-bottom:8px;">Fee overrides</div>
-            <label style="display:flex;align-items:center;gap:8px;margin:6px 0;">
-              <input type="checkbox" id="processing_fee_enabled" name="processing_fee_enabled"
-                     {% if form_data.processing_fee_enabled or not loan %}checked{% endif %}>
-              Charge processing fee
-            </label>
-            <label style="display:flex;align-items:center;gap:8px;margin:6px 0;">
-              <input type="checkbox" id="penalty_enabled" name="penalty_enabled"
-                     {% if form_data.penalty_enabled or not loan %}checked{% endif %}>
-              Apply late-payment penalty
-            </label>
-            <div class="form-hint">Uncheck either option to waive that charge for this loan. Product-disabled fees cannot be turned back on here.</div>
+            <div class="fee-override-options">
+              <label>
+                <input type="checkbox" id="processing_fee_enabled" name="processing_fee_enabled"
+                       {% if not can_override_loan_fees %}disabled{% endif %}
+                       {% if form_data.processing_fee_enabled or not loan %}checked{% endif %}>
+                Charge processing fee
+              </label>
+              <label>
+                <input type="checkbox" id="penalty_enabled" name="penalty_enabled"
+                       {% if not can_override_loan_fees %}disabled{% endif %}
+                       {% if form_data.penalty_enabled or not loan %}checked{% endif %}>
+                Apply late-payment penalty
+              </label>
+            </div>
+            <div class="form-hint">
+              {% if can_override_loan_fees %}
+              Override the product’s processing fee and late-payment penalty for this loan.
+              {% else %}
+              Only users authorized by an administrator can change these fees.
+              {% endif %}
+            </div>
           </div>
-          {% endif %}
 
           {# ── Fee summary (always visible, updates via JS) ── #}
           <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:4px;">
@@ -339,9 +359,9 @@
     const companyRate = parseFloat(form.dataset.companyFeePercent) || 0;
     const productRate = parseFloat(opt?.dataset.processingFeePercent) || 0;
     const productFeeEnabled = opt?.dataset.processingFeeEnabled === 'true';
-    const processingFeeEnabled = productFeeEnabled && (
-      !processingFeeToggle || processingFeeToggle.checked
-    );
+    const processingFeeEnabled = processingFeeToggle
+      ? processingFeeToggle.checked
+      : productFeeEnabled;
     let fee = 0, feeLabel = '', feeSource = '';
     if (!processingFeeEnabled) {
       feeSource = 'No processing fee';
@@ -384,33 +404,22 @@
 
   function syncFeeToggles(resetToProductDefaults) {
     const opt = productSel.selectedOptions[0];
-    if (!opt || !opt.value) {
-      if (processingFeeToggle) processingFeeToggle.disabled = true;
-      if (penaltyToggle) penaltyToggle.disabled = true;
-      return;
-    }
-
-    const productFeeEnabled = opt.dataset.processingFeeEnabled === 'true';
-    const productPenaltyEnabled = opt.dataset.penaltyEnabled === 'true';
+    const hasProduct = Boolean(opt && opt.value);
     if (processingFeeToggle) {
-      processingFeeToggle.disabled = !productFeeEnabled;
-      if (resetToProductDefaults) processingFeeToggle.checked = productFeeEnabled;
-      if (!productFeeEnabled) processingFeeToggle.checked = false;
+      if (resetToProductDefaults && hasProduct) {
+        processingFeeToggle.checked = opt.dataset.processingFeeEnabled === 'true';
+      }
     }
     if (penaltyToggle) {
-      penaltyToggle.disabled = !productPenaltyEnabled;
-      if (resetToProductDefaults) penaltyToggle.checked = productPenaltyEnabled;
-      if (!productPenaltyEnabled) penaltyToggle.checked = false;
+      if (resetToProductDefaults && hasProduct) {
+        penaltyToggle.checked = opt.dataset.penaltyEnabled === 'true';
+      }
     }
   }
 
   function syncInterestMethod(resetToProductDefault) {
     const opt = productSel.selectedOptions[0];
-    if (!opt || !opt.value) {
-      interestMethodSel.disabled = true;
-      return;
-    }
-    interestMethodSel.disabled = false;
+    if (!opt || !opt.value) return;
     if (resetToProductDefault || !interestMethodSel.value) {
       interestMethodSel.value = opt.dataset.method;
     }

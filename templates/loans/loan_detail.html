@@ -92,9 +92,12 @@
   {% endif %}
 
   {% if loan.status == 'REJECTED' or loan.status == 'DRAFT' %}
-    {% if user == loan.applied_by or perms.accounts.can_edit_any_loan %}
-    <a href="{% url 'loans:recall' loan.pk %}" class="btn btn-secondary btn-sm flex-shrink-0"
-       onclick="return confirm('Recall this application back to draft for editing?');">Recall</a>
+    {% if user.role == "CEO" %}
+    <form method="post" action="{% url 'loans:recall' loan.pk %}" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-secondary btn-sm flex-shrink-0"
+              onclick="return confirm('Recall this application back to draft for editing?');">Recall</button>
+    </form>
     {% endif %}
   {% endif %}
 
@@ -375,7 +378,7 @@
     </div>
     {% endif %}
 
-    {% if perms.accounts.can_write_off_loans %}
+    {% if user.role == "CEO" %}
       {% if loan.status == 'WRITTEN_OFF' %}
       <div class="card mb-3 print-hide" id="reinstate" style="border-color:var(--green-500);">
         <div class="card-header"><span class="card-title">Reinstate Loan</span></div>

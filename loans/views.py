@@ -264,10 +264,21 @@ def _build_loan_basic_data(loan=None):
     }
 
 
-def _resolve_loan_interest_method(product, data, existing_loan=None):
-    method = data.get("interest_method")
-    if not method and existing_loan and existing_loan.product_id == product.pk:
-        method = existing_loan.interest_method
+def _resolve_loan_interest_method(
+    product,
+    data,
+    existing_loan=None,
+    can_change=True,
+):
+    same_product_draft = (
+        existing_loan is not None and existing_loan.product_id == product.pk
+    )
+    if can_change:
+        method = data.get("interest_method")
+        if not method and same_product_draft:
+            method = existing_loan.interest_method
+    else:
+        method = existing_loan.interest_method if same_product_draft else None
     method = method or product.interest_method
     if method not in dict(LoanProduct.InterestMethod.choices):
         raise ValueError("Select a valid interest method.")
@@ -288,9 +299,27 @@ def _resolve_loan_fee_switches(product, data, can_override, existing_loan=None):
         processing_fee_requested = True
         penalty_requested = True
 
+    if can_override or same_product_draft:
+        return processing_fee_requested, penalty_requested
+
     processing_fee_enabled = product.processing_fee_enabled and processing_fee_requested
     penalty_enabled = product.penalty_enabled and penalty_requested
     return processing_fee_enabled, penalty_enabled
+
+
+def _get_schedule_preview_draft(data, client_id=None):
+    draft_id = data.get("draft_id")
+    client_id = client_id or data.get("client_id")
+    if not draft_id or not client_id:
+        return None
+    try:
+        return Loan.objects.filter(
+            pk=draft_id,
+            client_id=client_id,
+            status__in=(Loan.Status.DRAFT, Loan.Status.PENDING),
+        ).first()
+    except ValidationError:
+        return None
 
 
 def _build_security_data(loan=None):
@@ -462,7 +491,8 @@ def loan_apply_step2(request, client_id):
         can_renew = bool(active_loan and active_loan.product and active_loan.product.allows_renewal and _user_has_permission(request.user, "can_approve_loans"))
 
     products = LoanProduct.objects.filter(is_active=True)
-    can_override_loan_fees = request.user.role == "CEO"
+    can_override_loan_fees = request.user.can("can_override_loan_fees")
+    can_change_loan_interest_method = request.user.can("can_change_loan_interest_method")
     active_branches = Branch.objects.filter(is_active=True).order_by("name")
     can_choose_branch = bool(getattr(request.user, "is_superuser", False)) or _user_has_permission(request.user, "can_view_all_branches")
     company_settings = CompanySettings.get()
@@ -488,7 +518,12 @@ def loan_apply_step2(request, client_id):
             purpose = data.get("purpose", "").strip()
 
             product = get_object_or_404(LoanProduct, pk=product_id, is_active=True)
-            interest_method = _resolve_loan_interest_method(product, data, loan)
+            interest_method = _resolve_loan_interest_method(
+                product,
+                data,
+                loan,
+                can_change=can_change_loan_interest_method,
+            )
             processing_fee_enabled, penalty_enabled = _resolve_loan_fee_switches(
                 product, data, can_override_loan_fees, loan
             )
@@ -535,6 +570,7 @@ def loan_apply_step2(request, client_id):
                 start_date=date.today(),
                 include_processing_fee=processing_fee_enabled,
                 interest_method=interest_method,
+                allow_disabled_product_fee=processing_fee_enabled,
             )
             processing_fee_percent = fee_percent
             nominal_apr = product.interest_rate_monthly * Decimal("12")
@@ -577,6 +613,7 @@ def loan_apply_step2(request, client_id):
                 start_date=date.today(),
                 include_processing_fee=loan.processing_fee_enabled,
                 interest_method=loan.interest_method,
+                allow_disabled_product_fee=loan.processing_fee_enabled,
             )
             processing_fee_percent = fee_percent
             nominal_apr = loan.interest_rate_monthly * Decimal("12")
@@ -614,6 +651,7 @@ def loan_apply_step2(request, client_id):
         "active_loan": active_loan,
         "can_renew": can_renew,
         "can_override_loan_fees": can_override_loan_fees,
+        "can_change_loan_interest_method": can_change_loan_interest_method,
         "processing_fee": processing_fee,
         "processing_fee_percent": processing_fee_percent,
         "fee_source": fee_source,
@@ -803,6 +841,7 @@ def loan_apply_step3(request, client_id):
                 start_date=date.today(),
                 include_processing_fee=loan.processing_fee_enabled,
                 interest_method=loan.interest_method,
+                allow_disabled_product_fee=loan.processing_fee_enabled,
             )
         except Exception:
             pass
@@ -977,6 +1016,7 @@ def loan_apply_review(request, client_id):
                 start_date=date.today(),
                 include_processing_fee=loan.processing_fee_enabled,
                 interest_method=loan.interest_method,
+                allow_disabled_product_fee=loan.processing_fee_enabled,
             )
         except Exception:
             pass
@@ -1024,6 +1064,7 @@ def loan_apply_review(request, client_id):
                     start_date=date.today(),
                     include_processing_fee=loan.processing_fee_enabled,
                     interest_method=loan.interest_method,
+                    allow_disabled_product_fee=loan.processing_fee_enabled,
                 )
 
                 loan.processing_fee = processing_fee
@@ -1079,7 +1120,7 @@ def loan_apply_review(request, client_id):
         "total_cost_of_credit": totals.get("total_interest", Decimal("0")) + processing_fee,
         "collateral_items": collateral_items,
         "guarantor_rows": guarantor_rows,
-        "can_override_loan_fees": request.user.role == "CEO",
+        "can_override_loan_fees": request.user.can("can_override_loan_fees"),
         "eligibility": calculate_eligibility(client, loan.product) if loan and loan.product else None,
         "effective_min": max(loan.product.min_amount, collateral_minimum(collateral_items)) if loan and loan.product else None,
     })
@@ -1104,7 +1145,8 @@ def loan_edit(request, pk):
 
     client = loan.client
     products = LoanProduct.objects.filter(is_active=True)
-    can_override_loan_fees = request.user.role == "CEO"
+    can_override_loan_fees = request.user.can("can_override_loan_fees")
+    can_change_loan_interest_method = request.user.can("can_change_loan_interest_method")
     available_guarantors = Guarantor.objects.filter(is_active=True)
 
     schedule_rows = []
@@ -1138,7 +1180,12 @@ def loan_edit(request, pk):
             purpose = data.get("purpose", loan.purpose or "")
 
             product = get_object_or_404(LoanProduct, pk=product_id, is_active=True)
-            interest_method = _resolve_loan_interest_method(product, data, loan)
+            interest_method = _resolve_loan_interest_method(
+                product,
+                data,
+                loan,
+                can_change=can_change_loan_interest_method,
+            )
             processing_fee_enabled, penalty_enabled = _resolve_loan_fee_switches(
                 product, data, can_override_loan_fees, loan
             )
@@ -1170,6 +1217,7 @@ def loan_edit(request, pk):
                 start_date=date.today(),
                 include_processing_fee=processing_fee_enabled,
                 interest_method=interest_method,
+                allow_disabled_product_fee=processing_fee_enabled,
             )
 
             guarantor_ids = data.getlist("guarantor_id")
@@ -1190,7 +1238,10 @@ def loan_edit(request, pk):
                 loan.processing_fee_manually_set = not processing_fee_enabled
                 loan.term_months = term_months
                 loan.repayment_frequency = frequency
-                fee_percent = resolve_processing_fee_rate(product)
+                fee_percent = resolve_processing_fee_rate(
+                    product,
+                    allow_disabled_product_fee=processing_fee_enabled,
+                )
                 loan.processing_fee_percent = fee_percent if fee_percent else None
                 loan.processing_fee = processing_fee
                 loan.total_fees = processing_fee
@@ -1276,6 +1327,7 @@ def loan_edit(request, pk):
         "editing": True,
         "loan": loan,
         "can_override_loan_fees": can_override_loan_fees,
+        "can_change_loan_interest_method": can_change_loan_interest_method,
         "interest_method_choices": LoanProduct.InterestMethod.choices,
         "processing_fee_method": CompanySettings.get().processing_fee_method,
         "processing_fee_ranges": CompanySettings.get().processing_fee_ranges,
@@ -1341,7 +1393,7 @@ def loan_detail(request, pk):
     company_settings = CompanySettings.get()
     write_off_threshold_days = getattr(company_settings, "auto_write_off_days", 180)
     can_write_off = (
-        _user_has_permission(request.user, "can_write_off_loans")
+        request.user.role == "CEO"
         and loan.status in (Loan.Status.ACTIVE, Loan.Status.RESTRUCTURED, Loan.Status.DEFAULTED)
         and loan.days_overdue >= write_off_threshold_days
     )
@@ -1521,7 +1573,7 @@ def loan_reschedule(request, pk):
     return render(request, "loans/renew_loan.html", context)
 
 
-@login_required
+@_require_role("CEO")
 def loan_regenerate_schedule(request, pk):
     """HTMX endpoint to GET a small form and POST to regenerate the repayment schedule.
 
@@ -1554,10 +1606,6 @@ def loan_regenerate_schedule(request, pk):
 
     # POST -> perform regeneration
     if request.method == "POST":
-        if not request.user.can("can_regenerate_schedule"):
-            messages.error(request, "You do not have permission to regenerate a loan's schedule.")
-            return redirect("loans:detail", pk=loan.pk)
-
         if loan.status not in (Loan.Status.ACTIVE, Loan.Status.RESTRUCTURED):
             messages.error(
                 request,
@@ -1703,7 +1751,7 @@ def loan_regenerate_schedule(request, pk):
         })
 
 
-@login_required
+@_require_role("CEO")
 @require_POST
 def loan_undo_regenerate_schedule(request, pk):
     """
@@ -1717,10 +1765,6 @@ def loan_undo_regenerate_schedule(request, pk):
     if not can_access_branch_object(request.user, loan):
         messages.error(request, "That loan belongs to a different branch.")
         return redirect("loans:list")
-
-    if not request.user.can("can_regenerate_schedule"):
-        messages.error(request, "You do not have permission to undo a schedule regeneration.")
-        return redirect("loans:detail", pk=loan.pk)
 
     snapshot = loan.schedule_snapshots.filter(is_undone=False).order_by("-created_at").first()
     if not snapshot:
@@ -2213,16 +2257,17 @@ def loan_reinstate(request, pk):
 @_permission_required("can_approve_loans")
 @require_POST
 def loan_query(request, pk):
-    """Request more information while keeping the application pending."""
+    """Request more information and return the application to draft for editing."""
     loan = get_object_or_404(Loan, pk=pk, status=Loan.Status.PENDING)
     reason = request.POST.get("review_reason", "").strip()
     if not reason:
         messages.error(request, "A reason is required to query this loan.")
         return redirect("loans:detail", pk=pk)
 
+    loan.status = Loan.Status.DRAFT
     loan.reviewed_by = request.user
     loan.query_reason = reason
-    loan.save(update_fields=["reviewed_by", "query_reason"])
+    loan.save(update_fields=["status", "reviewed_by", "query_reason"])
 
     messages.success(request, f"More information requested for loan {loan.loan_number}.")
     return redirect("loans:detail", pk=pk)
@@ -2247,27 +2292,22 @@ def loan_reject(request, pk):
     return redirect("loans:detail", pk=pk)
 
 
-@_require_role("CASHIER", "MANAGER", "CEO")
+@_require_role("CEO")
 @require_POST
 def loan_draft_delete(request, pk):
     """Permanently delete a DRAFT loan application."""
     loan = get_object_or_404(Loan, pk=pk, status=Loan.Status.DRAFT)
-    if not (request.user == loan.applied_by or request.user.can("can_edit_any_loan")):
-        messages.error(request, "You do not have permission to delete this draft.")
-        return redirect("loans:detail", pk=loan.pk)
     ref = loan.loan_number
     loan.delete()
     messages.success(request, f"Draft {ref} deleted.")
     return redirect("loans:list")
 
 
-@_require_role("CASHIER", "MANAGER", "CEO")
+@_require_role("CEO")
+@require_POST
 def loan_recall(request, loan_id):
     """Pull a rejected/draft loan back into edit mode."""
     loan = get_object_or_404(Loan, pk=loan_id)
-    if not (request.user == loan.applied_by or request.user.can("can_edit_any_loan")):
-        messages.error(request, "You do not have permission to recall this application.")
-        return redirect("loans:detail", pk=loan.pk)
     if loan.status not in (Loan.Status.DRAFT, Loan.Status.REJECTED):
         messages.error(request, "Only draft or rejected applications can be recalled for editing.")
         return redirect("loans:detail", pk=loan.pk)
@@ -2355,7 +2395,14 @@ def schedule_preview_pdf(request, client_id):
         frequency   = request.GET.get("frequency", "") or Loan.RepaymentFrequency.MONTHLY
 
         product = get_object_or_404(LoanProduct, pk=product_id, is_active=True)
-        interest_method = request.GET.get("interest_method") or product.interest_method
+        draft = _get_schedule_preview_draft(request.GET, client_id=client.pk)
+        can_change_interest_method = request.user.can("can_change_loan_interest_method")
+        interest_method = _resolve_loan_interest_method(
+            product,
+            request.GET,
+            draft,
+            can_change=can_change_interest_method,
+        )
         if interest_method not in dict(LoanProduct.InterestMethod.choices):
             return HttpResponseBadRequest("Select a valid interest method.")
 
@@ -2366,9 +2413,11 @@ def schedule_preview_pdf(request, client_id):
 
         # Mirror the calculation used to render the on-screen preview in
         # loan_apply_step2 so the PDF always matches what the user sees.
-        fee_enabled = product.processing_fee_enabled and (
-            request.user.role != "CEO"
-            or request.GET.get("processing_fee_enabled") == "on"
+        fee_enabled, _penalty_enabled = _resolve_loan_fee_switches(
+            product,
+            request.GET,
+            request.user.can("can_override_loan_fees"),
+            draft,
         )
         schedule_rows, totals, fee_amount, _, fee_source = build_loan_schedule_context(
             principal=principal,
@@ -2378,6 +2427,7 @@ def schedule_preview_pdf(request, client_id):
             start_date=date.today(),
             include_processing_fee=fee_enabled,
             interest_method=interest_method,
+            allow_disabled_product_fee=fee_enabled,
         )
 
         pdf_bytes = generate_schedule_preview_pdf(
@@ -2419,12 +2469,20 @@ def schedule_preview(request):
         frequency   = request.GET.get("frequency", "MONTHLY")
 
         product = LoanProduct.objects.get(pk=product_id, is_active=True)
-        interest_method = request.GET.get("interest_method") or product.interest_method
+        draft = _get_schedule_preview_draft(request.GET)
+        interest_method = _resolve_loan_interest_method(
+            product,
+            request.GET,
+            draft,
+            can_change=request.user.can("can_change_loan_interest_method"),
+        )
         if interest_method not in dict(LoanProduct.InterestMethod.choices):
             return HttpResponseBadRequest("Select a valid interest method.")
-        processing_fee_enabled = product.processing_fee_enabled and (
-            request.user.role != "CEO"
-            or request.GET.get("processing_fee_enabled") == "on"
+        processing_fee_enabled, _penalty_enabled = _resolve_loan_fee_switches(
+            product,
+            request.GET,
+            request.user.can("can_override_loan_fees"),
+            draft,
         )
         schedule_rows, totals = generate_schedule(
             principal   = principal,
@@ -2442,11 +2500,18 @@ def schedule_preview(request):
         # Prefer tiered office charge if available
         if product:
             processing_fee = (
-                calculate_processing_fee_amount(principal, product=product)
+                calculate_processing_fee_amount(
+                    principal,
+                    product=product,
+                    allow_disabled_product_fee=processing_fee_enabled,
+                )
                 if processing_fee_enabled else Decimal("0")
             )
             processing_fee_percent = (
-                resolve_processing_fee_rate(product)
+                resolve_processing_fee_rate(
+                    product,
+                    allow_disabled_product_fee=processing_fee_enabled,
+                )
                 if processing_fee_enabled else Decimal("0")
             )
             fee_source = "Company settings (range)" if (processing_fee and not processing_fee_percent) else (product.name if processing_fee_percent else "Company settings")

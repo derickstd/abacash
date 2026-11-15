@@ -61,7 +61,9 @@
           <td class="text-sm text-muted">{{ injection.notes|default:"-"|truncatewords:5 }}</td>
           <td style="text-align:center;">
             <a href="{% url 'accounts:capital_injection_edit' injection.pk %}" class="btn btn-xs btn-secondary" hx-get="{% url 'accounts:capital_injection_edit' injection.pk %}" hx-target="#modal-body" hx-select="#quick-form-content" hx-swap="innerHTML">Edit</a>
+            {% if user.role == "CEO" %}
             <a href="{% url 'accounts:capital_injection_delete' injection.pk %}" class="btn btn-xs btn-danger">Delete</a>
+            {% endif %}
           </td>
         </tr>
         {% endfor %}

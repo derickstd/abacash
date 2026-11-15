@@ -80,7 +80,7 @@
           <td>{{ investor.investment_date|default:"-" }}</td>
           <td>{{ investor.get_status_display }}</td>
           <td>{{ investor.branch.name|default:"Company-wide" }}</td>
-          <td><a href="{% url 'accounts:investor_edit' investor.pk %}" class="btn btn-xs btn-secondary" hx-get="{% url 'accounts:investor_edit' investor.pk %}" hx-target="#modal-body" hx-select="#quick-form-content" hx-swap="innerHTML" onclick="event.stopPropagation();">Edit</a> <a href="{% url 'accounts:investor_delete' investor.pk %}" class="btn btn-xs btn-danger" onclick="event.stopPropagation();">Delete</a></td>
+          <td><a href="{% url 'accounts:investor_edit' investor.pk %}" class="btn btn-xs btn-secondary" hx-get="{% url 'accounts:investor_edit' investor.pk %}" hx-target="#modal-body" hx-select="#quick-form-content" hx-swap="innerHTML" onclick="event.stopPropagation();">Edit</a> {% if user.role == "CEO" %}<a href="{% url 'accounts:investor_delete' investor.pk %}" class="btn btn-xs btn-danger" onclick="event.stopPropagation();">Delete</a>{% endif %}</td>
         </tr>
       {% endfor %}
       </tbody>
