@@ -1099,7 +1099,176 @@
       }
     }
   </style>
-  {% block extra_head %}{% endblock %}
+<style>
+    /* ============================================
+       MOBILE APP SHELL (phones & small tablets)
+       ============================================ */
+    .tabbar { display: none; }
+
+    @media (max-width: 768px) {
+      :root {
+        --nav-height: 56px;
+        --tabbar-h: 64px;
+        --container-padding: 1rem;
+      }
+
+      body {
+        font-size: 15px;
+        padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px));
+        padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px) + 8px);
+      }
+
+      /* Top app bar */
+      nav {
+        height: calc(var(--nav-height) + env(safe-area-inset-top, 0px));
+        padding: env(safe-area-inset-top, 0px) 1rem 0;
+        justify-content: space-between;
+        gap: .5rem;
+        box-shadow: none;
+      }
+      .logo { position: static; transform: none; gap: .5rem; font-size: 1rem; letter-spacing: .06em; }
+      .logo:hover { transform: none; }
+      .logo img { height: 34px; }
+      .brand-text { font-size: .95rem; }
+      .nav-list { display: none; }
+      .nav-actions { position: static; transform: none; width: auto; gap: .5rem; flex-wrap: nowrap; }
+      .nav-actions > .btn-secondary { display: none; }
+      .nav-actions .btn { min-height: 40px; padding: .5rem .95rem; font-size: .85rem; border-radius: 12px; }
+      .landing-theme-toggle { width: 40px; height: 40px; flex-basis: 40px; }
+
+      /* Content */
+      main { padding: 1rem var(--container-padding) 1.5rem; }
+      .hero { padding: 1.5rem 0 1rem; }
+      .eyebrow { font-size: .7rem; margin-bottom: .75rem; }
+      .hero-title { font-size: clamp(2rem, 9vw, 2.4rem); line-height: 1.1; margin-bottom: .75rem; }
+      .hero-copy { font-size: 1rem; margin: 0 auto 1.25rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; gap: .65rem; margin-top: 1rem; }
+      .hero-actions .btn { width: 100%; }
+      .brand-logos { margin-top: 1.25rem; gap: .75rem; }
+      .brand-logos img { max-height: 56px; }
+
+      .btn { min-height: 48px; }
+      .btn-secondary { padding: .8rem 1.2rem; }
+
+      .section-heading { text-align: left; margin-bottom: 1rem; }
+      .section-heading h2 { font-size: 1.4rem; line-height: 1.25; }
+      .section-label { margin-bottom: .5rem; font-size: .7rem; }
+
+      .grid { gap: .75rem; }
+      .page-grid { grid-template-columns: 1fr; }
+      .section-card, .card, .link-card { padding: 1.1rem; border-radius: 18px; }
+      .section-card:hover, .card:hover, .link-card:hover { transform: none; }
+      .link-card { min-height: 0; display: flex; flex-direction: column; }
+      .link-card h3 { font-size: 1.1rem; margin-bottom: .4rem; }
+      .link-card p { margin-bottom: .9rem; font-size: .92rem; }
+
+      .page-link-item { padding: .85rem 1rem; }
+      .page-link-item .btn { min-height: 40px; padding: .5rem .9rem; }
+
+      /* Modals become bottom sheets */
+      .popup-backdrop { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(15, 23, 42, .5); }
+      .popup-modal {
+        left: 0; right: 0; top: auto; bottom: 0;
+        width: 100%;
+        max-height: 92vh;
+        max-height: 92dvh;
+        transform: translateY(100%);
+        border-radius: 24px 24px 0 0;
+      }
+      .popup-modal.active { transform: translateY(0); }
+      .popup-panel {
+        max-height: 92vh;
+        max-height: 92dvh;
+        border-radius: 24px 24px 0 0;
+        padding: 0.75rem 1.1rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+      .popup-panel::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 5px;
+        border-radius: 3px;
+        background: var(--border-soft);
+        margin: 0 auto 1rem;
+      }
+      .popup-panel h2 { padding-right: 2.5rem; font-size: 1.45rem; }
+      .popup-panel .hero-copy { font-size: .95rem; margin-bottom: 1rem; }
+      .popup-close { right: .75rem; top: .75rem; width: 40px; height: 40px; }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea { font-size: 16px; min-height: 48px; }
+      .form-group textarea { min-height: 96px; }
+      .popup-actions { flex-direction: column-reverse; margin-top: 1rem; }
+      .popup-actions .btn { width: 100%; min-width: 0; }
+
+      .contact-fab { display: none; }
+
+      /* Footer & toasts */
+      .footer { margin-top: 2rem; border-radius: 20px; padding: 1.5rem 1rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+      .toast-container {
+        left: 12px; right: 12px;
+        bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px) + 12px);
+        align-items: stretch;
+      }
+      .toast { min-width: 0; max-width: none; }
+
+      /* Bottom tab bar */
+      .tabbar {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 120;
+        height: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px));
+        padding: 6px 8px env(safe-area-inset-bottom, 0px);
+        background: rgba(255, 255, 255, .92);
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        border-top: 1px solid var(--border-soft);
+        box-shadow: 0 -8px 24px rgba(15, 23, 42, .06);
+      }
+      html[data-theme="dark"] .tabbar { background: rgba(15, 23, 42, .92); }
+
+      .tab-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        min-height: 48px;
+        padding: 0;
+        border: 0;
+        border-radius: 14px;
+        background: none;
+        color: var(--text-muted);
+        font-family: inherit;
+        font-size: .68rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: color .2s ease, transform .15s ease, background .2s ease;
+      }
+      .tab-item svg {
+        width: 22px; height: 22px;
+        fill: none; stroke: currentColor; stroke-width: 2;
+        stroke-linecap: round; stroke-linejoin: round;
+      }
+      .tab-item:active { transform: scale(.94); background: rgba(37, 99, 235, .06); }
+      .tab-item.active { color: var(--accent); }
+    }
+
+    @media (max-width: 380px) {
+      .tab-item { font-size: .6rem; }
+      .logo span.brand-text { display: none; }
+    }
+  </style>
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
   <nav>
@@ -1131,6 +1300,39 @@
   <main>
     {% block content %}{% endblock %}
   </main>
+
+  <!-- Mobile bottom tab bar (app-style) -->
+  <div class="tabbar" role="navigation" aria-label="Primary">
+    <a class="tab-item" href="{% url 'tenants:landing' %}" data-tab-path="{% url 'tenants:landing' %}">
+      <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg>
+      <span>Home</span>
+    </a>
+    <a class="tab-item" href="{% url 'tenants:features' %}" data-tab-path="{% url 'tenants:features' %}">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span>Features</span>
+    </a>
+    <a class="tab-item" href="{% url 'tenants:pricing' %}" data-tab-path="{% url 'tenants:pricing' %}">
+      <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+      <span>Pricing</span>
+    </a>
+    <button type="button" class="tab-item" onclick="openContactPopup()">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span>Contact</span>
+    </button>
+    <button type="button" class="tab-item" data-modal-target="login-modal-template">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Login</span>
+    </button>
+  </div>
+  <script>
+    (function () {
+      var here = location.pathname.replace(/\/+$/, '') || '/';
+      document.querySelectorAll('.tabbar [data-tab-path]').forEach(function (el) {
+        var p = el.getAttribute('data-tab-path').replace(/\/+$/, '') || '/';
+        if (p === here) el.classList.add('active');
+      });
+    })();
+  </script>
 
   <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 

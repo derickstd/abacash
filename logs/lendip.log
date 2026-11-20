@@ -25208,3 +25208,18 @@ LINE 1: ...l35", "loans_loan"."rejection_reason" AS "col36", "loans_loa...
 2026-11-15 23:34:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
 2026-11-15 23:35:47 [WARNING] django.request: Not Found: /api/ping/
 2026-11-15 23:35:47 [WARNING] django.server: "POST /api/ping/ HTTP/1.1" 404 4721
+2026-11-20 15:46:30 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2026-11-20 15:48:35 [INFO] django.server: "GET / HTTP/1.1" 200 51908
+2026-11-20 15:48:36 [INFO] django.server: "GET /static/css/aba.css HTTP/1.1" 200 51057
+2026-11-20 15:48:36 [INFO] django.server: "GET /static/images/logo.png HTTP/1.1" 200 1420572
+2026-11-20 15:48:38 [INFO] django.server: "GET /static/images/aba.png HTTP/1.1" 200 950561
+2026-11-20 15:48:39 [WARNING] django.request: Not Found: /favicon.ico
+2026-11-20 15:48:39 [WARNING] django.server: "GET /favicon.ico HTTP/1.1" 404 4726
+2026-11-20 16:08:10 [INFO] django.server: "GET / HTTP/1.1" 200 60706
+2026-11-20 16:08:21 [WARNING] django.request: Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2026-11-20 16:08:21 [WARNING] django.server: "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 4837
+2026-11-20 16:16:28 [INFO] django.server: "GET / HTTP/1.1" 200 60950
+2026-11-20 16:23:09 [INFO] django.server: "GET / HTTP/1.1" 200 60906
+2026-11-20 16:23:38 [WARNING] django.request: Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2026-11-20 16:23:38 [WARNING] django.server: "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 4837
+2026-11-20 16:32:12 [INFO] django.utils.autoreload: Watching for file changes with StatReloader

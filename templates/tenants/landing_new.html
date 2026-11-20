@@ -2,6 +2,29 @@
 {% load static %}
 {% block title %}Home | Abacash{% endblock %}
 
+{% block extra_head %}
+<style>
+  @media (max-width: 768px) {
+    section.section-card[style] { padding: 1.1rem !important; margin-top: 1.25rem !important; }
+    .hero-title { font-size: clamp(1.9rem, 8.5vw, 2.3rem); }
+    .feature-grid { grid-template-columns: 1fr; }
+    .feature-card { display: grid; grid-template-columns: 48px 1fr; column-gap: 14px; align-items: start; }
+    .feature-card .feature-icon { margin: 0; grid-row: span 2; width: 48px; height: 48px; font-size: 1.3rem; }
+    .feature-card h3 { font-size: 1rem; margin-bottom: .25rem; }
+    .feature-card p { font-size: .88rem; }
+    .page-link-item { gap: .75rem; }
+    .page-link-item small { font-size: .8rem; }
+  }
+    .hero-title {
+      background: none;
+      -webkit-background-clip: border-box;
+      background-clip: border-box;
+      -webkit-text-fill-color: var(--accent);
+      color: var(--accent);
+    }
+</style>
+{% endblock %}
+
 {% block content %}
   <section class="hero">
     <div class="eyebrow">Abacash Loan Platform</div>
