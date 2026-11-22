@@ -49,6 +49,27 @@ from django.utils.translation import gettext_lazy as _
 from common.phone_numbers import PhoneNumberNormalizationMixin
 
 
+def cash_disbursed_amount_expression():
+    amount_field = models.DecimalField(max_digits=15, decimal_places=2)
+    return models.Case(
+        models.When(
+            is_renewal=False,
+            then=models.F("principal_amount"),
+        ),
+        models.When(
+            is_renewal=True,
+            renewed_from__isnull=False,
+            principal_amount__gt=models.F("renewed_from__outstanding_balance"),
+            then=(
+                models.F("principal_amount")
+                - models.F("renewed_from__outstanding_balance")
+            ),
+        ),
+        default=models.Value(Decimal("0")),
+        output_field=amount_field,
+    )
+
+
 class LoanProduct(models.Model):
     """
     A loan product defines the rules for a category of loans.
@@ -609,7 +630,17 @@ class Loan(models.Model):
 
     @property
     def cash_disbursed(self):
-        return self.principal_amount
+        annotated_amount = getattr(self, "cash_disbursed_amount", None)
+        if annotated_amount is not None:
+            return annotated_amount
+        if not self.is_renewal:
+            return self.principal_amount
+        if not self.renewed_from_id:
+            return Decimal("0")
+        return max(
+            self.principal_amount - self.renewed_from.outstanding_balance,
+            Decimal("0"),
+        )
 
     @property
     def total_repayable_inclusive_of_charges(self):
@@ -698,6 +729,10 @@ class LoanDisbursementAudit(models.Model):
         ("regenerate", "Regenerate Schedule"),
         ("reschedule", "Reschedule"),
         ("renew", "Renewal"),
+        ("write_off", "Write Off"),
+        ("reinstate", "Reinstate"),
+        ("query", "Information Requested"),
+        ("reject", "Reject"),
     ]
 
     loan = models.ForeignKey(

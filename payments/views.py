@@ -13,6 +13,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import connection, transaction
+from django.db.models import Sum
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -64,11 +65,18 @@ def payment_list(request):
         qs = qs.filter(loan__loan_number__icontains=search) | \
              qs.filter(loan__client__last_name__icontains=search)
 
+    branch_filter = request.GET.get("branch", "").strip()
+    if branch_filter:
+        qs = qs.filter(loan__branch_id=branch_filter)
+
+    total_amount = qs.aggregate(total=Sum("amount_received"))["total"] or Decimal("0")
+
     active_loans = scope_to_branch(
         Loan.objects.filter(status="ACTIVE"), request.user
     ).select_related("client").order_by("client__last_name")
     return render(request, "payments/payment_list.html", {
         "payments": qs[:100],
+        "total_amount": total_amount,
         "search": search,
         "active_loans": active_loans,
         "today": date.today(),
@@ -456,11 +464,13 @@ def record_payment(request, loan_pk=None):
         if request.POST.get("_from_list"):
             qs = Payment.objects.select_related("loan__client", "recorded_by").order_by("-payment_date")
             qs = scope_to_branch(qs, request.user, "loan__branch")
+            total_amount = qs.aggregate(total=Sum("amount_received"))["total"] or Decimal("0")
             active_loans = scope_to_branch(
                 Loan.objects.filter(status="ACTIVE"), request.user
             ).select_related("client").order_by("client__last_name")
             return render(request, "payments/payment_list.html", {
                 "payments": qs[:100],
+                "total_amount": total_amount,
                 "search": "",
                 "active_loans": active_loans,
                 "today": date.today(),

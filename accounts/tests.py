@@ -18,6 +18,18 @@ from .branch_scope import get_single_active_branch_id, resolve_branch_for_write
 from .cash import recent_cash_transactions
 from .models import CapitalInjection
 from .signals import create_initial_tenant_admin
+from .templatetags.aba_filters import comma_number, money, ugx_plain
+
+
+class MoneyFormattingTests(SimpleTestCase):
+    def test_plain_format_adds_thousands_commas(self):
+        self.assertEqual(ugx_plain(Decimal("1234567")), "1,234,567")
+
+    def test_plain_format_preserves_decimal_places(self):
+        self.assertEqual(comma_number(Decimal("1234567.50")), "1,234,567.50")
+
+    def test_money_format_uses_currency_and_commas(self):
+        self.assertEqual(money(Decimal("1234567"), "UGX"), "UGX 1,234,567")
 from .views import (
     _build_dashboard_performance,
     _on_time_schedule_payment_filter,
