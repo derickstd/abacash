@@ -134,7 +134,7 @@ class LoanProduct(models.Model):
         decimal_places=2,
         default=Decimal("2.00"),
         validators=[MinValueValidator(Decimal("0.00")), MaxValueValidator(Decimal("99.99"))],
-        help_text=_("Monthly penalty rate on overdue amounts, e.g. 2.00 for 2%."),
+        help_text=_("Penalty rate per tenant-selected interval on overdue amounts."),
     )
     penalty_enabled = models.BooleanField(
         default=True,
@@ -292,6 +292,10 @@ class Loan(models.Model):
         BIWEEKLY = "BIWEEKLY", _("Bi-Weekly")
         MONTHLY  = "MONTHLY",  _("Monthly")
 
+    class PenaltyFrequency(models.TextChoices):
+        DAILY = "DAILY", _("Daily")
+        MONTHLY = "MONTHLY", _("Monthly")
+
     class Priority(models.TextChoices):
         LOW      = "LOW",      _("Low")
         NORMAL   = "NORMAL",   _("Normal")
@@ -381,6 +385,11 @@ class Loan(models.Model):
     interest_rate_monthly = models.DecimalField(max_digits=5, decimal_places=2)
     interest_method       = models.CharField(max_length=15, choices=LoanProduct.InterestMethod.choices)
     penalty_rate_monthly  = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal("2.00"))
+    penalty_frequency = models.CharField(
+        max_length=10,
+        choices=PenaltyFrequency.choices,
+        default=PenaltyFrequency.MONTHLY,
+    )
     penalty_enabled       = models.BooleanField(default=True)
     processing_fee_enabled = models.BooleanField(default=True)
 
@@ -1212,6 +1221,8 @@ class LoanSchedule(models.Model):
     principal_due    = models.DecimalField(max_digits=15, decimal_places=2)
     interest_due     = models.DecimalField(max_digits=15, decimal_places=2)
     penalty_due      = models.DecimalField(max_digits=15, decimal_places=2, default=Decimal("0"))
+    penalty_paid     = models.DecimalField(max_digits=15, decimal_places=2, default=Decimal("0"))
+    penalty_periods_processed = models.PositiveIntegerField(default=0)
     fee_due          = models.DecimalField(max_digits=15, decimal_places=2, default=Decimal("0"))
     total_payment    = models.DecimalField(
         max_digits=15, decimal_places=2,

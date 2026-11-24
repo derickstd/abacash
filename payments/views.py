@@ -21,6 +21,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 
 from loans.models import Loan, LoanSchedule
+from loans.utils import calculate_penalty, penalty_periods_elapsed
 from accounts.models import AuditLog, Branch, CompanySettings
 from accounts.audit import log_action
 from accounts.branch_scope import scope_to_branch, can_access_branch_object, scope_to_branch_request
@@ -30,6 +31,39 @@ from clients.models import CreditTransaction
 from .models import Payment, Receipt, TRANSFER_REF_PREFIX
 
 logger = logging.getLogger("payments")
+
+
+def _assess_schedule_penalty(entry, loan, payment_date, company_settings):
+    days_overdue = max(
+        (payment_date - entry.due_date).days - company_settings.grace_period_days,
+        0,
+    )
+    periods_overdue = penalty_periods_elapsed(days_overdue, loan.penalty_frequency)
+    if periods_overdue <= entry.penalty_periods_processed:
+        return Decimal("0")
+
+    previous_periods = entry.penalty_periods_processed
+    entry.penalty_periods_processed = periods_overdue
+    if not company_settings.penalties_enabled or not loan.penalty_enabled:
+        return Decimal("0")
+
+    amount_paid_toward_installment = max(
+        entry.amount_paid - entry.penalty_paid,
+        Decimal("0"),
+    )
+    overdue_balance = max(
+        entry.total_payment - amount_paid_toward_installment,
+        Decimal("0"),
+    )
+    newly_accrued = calculate_penalty(
+        overdue_balance,
+        loan.penalty_rate_monthly,
+        days_overdue,
+        loan.penalty_frequency,
+        periods_already_assessed=previous_periods,
+    )
+    entry.penalty_due += newly_accrued
+    return newly_accrued
 
 
 def _receipt_document_basename(company_name, client_name, tenant_slug):
@@ -153,6 +187,7 @@ def record_payment(request, loan_pk=None):
                 # Snapshot balance before payment
                 balance_before = selected_loan.outstanding_balance
                 client = selected_loan.client
+                company_settings = CompanySettings.get()
 
                 # Optional: transfer existing client credit to another loan before applying it to this payment
                 transfer_target_id = request.POST.get('transfer_target_loan')
@@ -179,6 +214,18 @@ def record_payment(request, loan_pk=None):
                                 loan=target_loan,
                                 status__in=["PENDING", "OVERDUE", "PARTIAL"],
                             ).order_by('period_number')
+                            target_pending = list(target_pending)
+                            transfer_penalties_assessed = Decimal("0")
+                            for t_entry in target_pending:
+                                old_periods = t_entry.penalty_periods_processed
+                                transfer_penalties_assessed += _assess_schedule_penalty(
+                                    t_entry, target_loan, pay_date, company_settings
+                                )
+                                if t_entry.penalty_periods_processed != old_periods:
+                                    t_entry.save(update_fields=[
+                                        "penalty_due",
+                                        "penalty_periods_processed",
+                                    ])
 
                             for t_entry in target_pending:
                                 if remaining_transfer <= 0:
@@ -187,18 +234,29 @@ def record_payment(request, loan_pk=None):
                                 if remaining_transfer >= t_amount_due:
                                     t_interest_paid += t_entry.interest_due
                                     t_principal_paid += t_entry.principal_due
-                                    t_penalty_paid += t_entry.penalty_due
+                                    pending_penalty = max(
+                                        t_entry.penalty_due - t_entry.penalty_paid,
+                                        Decimal("0"),
+                                    )
+                                    t_penalty_paid += pending_penalty
+                                    t_entry.penalty_paid += pending_penalty
                                     remaining_transfer -= t_amount_due
                                     t_entry.amount_paid = t_entry.total_payment + t_entry.penalty_due
                                     t_entry.status = LoanSchedule.Status.PAID
                                     t_entry.paid_date = pay_date
                                 else:
                                     allocated = remaining_transfer
-                                    if remaining_transfer >= t_entry.penalty_due:
-                                        t_penalty_paid += t_entry.penalty_due
-                                        remaining_transfer -= t_entry.penalty_due
+                                    pending_penalty = max(
+                                        t_entry.penalty_due - t_entry.penalty_paid,
+                                        Decimal("0"),
+                                    )
+                                    if remaining_transfer >= pending_penalty:
+                                        t_penalty_paid += pending_penalty
+                                        t_entry.penalty_paid += pending_penalty
+                                        remaining_transfer -= pending_penalty
                                     else:
                                         t_penalty_paid += remaining_transfer
+                                        t_entry.penalty_paid += remaining_transfer
                                         remaining_transfer = Decimal('0')
                                     if remaining_transfer >= t_entry.interest_due:
                                         t_interest_paid += t_entry.interest_due
@@ -214,9 +272,15 @@ def record_payment(request, loan_pk=None):
 
                             applied = transfer_amount - remaining_transfer
                             # Update target loan totals
-                            target_balance_before = target_loan.outstanding_balance
+                            target_balance_before = (
+                                target_loan.outstanding_balance + transfer_penalties_assessed
+                            )
                             target_loan.total_paid += applied
-                            target_loan.outstanding_balance = max(target_loan.outstanding_balance - applied, Decimal('0'))
+                            target_loan.total_penalties += transfer_penalties_assessed
+                            target_loan.outstanding_balance = max(
+                                target_balance_before - applied,
+                                Decimal("0"),
+                            )
                             if target_loan.outstanding_balance == 0:
                                 target_loan.status = Loan.Status.COMPLETED
                                 target_loan.completion_date = pay_date
@@ -312,6 +376,19 @@ def record_payment(request, loan_pk=None):
                     loan=selected_loan,
                     status__in=["PENDING", "OVERDUE", "PARTIAL"],
                 ).order_by("period_number")
+                pending_entries = list(pending_entries)
+                penalties_assessed = Decimal("0")
+                for entry in pending_entries:
+                    old_periods = entry.penalty_periods_processed
+                    penalties_assessed += _assess_schedule_penalty(
+                        entry, selected_loan, pay_date, company_settings
+                    )
+                    if entry.penalty_periods_processed != old_periods:
+                        entry.save(update_fields=[
+                            "penalty_due",
+                            "penalty_periods_processed",
+                        ])
+                balance_before += penalties_assessed
 
                 for entry in pending_entries:
                     if remaining <= 0:
@@ -323,7 +400,12 @@ def record_payment(request, loan_pk=None):
                         # Full payment of this entry
                         interest_paid  += entry.interest_due
                         principal_paid += entry.principal_due
-                        penalty_paid   += entry.penalty_due
+                        pending_penalty = max(
+                            entry.penalty_due - entry.penalty_paid,
+                            Decimal("0"),
+                        )
+                        penalty_paid   += pending_penalty
+                        entry.penalty_paid += pending_penalty
                         remaining      -= amount_due
                         entry.amount_paid = entry.total_payment + entry.penalty_due
                         entry.status   = LoanSchedule.Status.PAID
@@ -331,11 +413,17 @@ def record_payment(request, loan_pk=None):
                     else:
                         # Partial payment — allocate: penalty first, then interest, then principal
                         allocated = remaining
-                        if remaining >= entry.penalty_due:
-                            penalty_paid += entry.penalty_due
-                            remaining    -= entry.penalty_due
+                        pending_penalty = max(
+                            entry.penalty_due - entry.penalty_paid,
+                            Decimal("0"),
+                        )
+                        if remaining >= pending_penalty:
+                            penalty_paid += pending_penalty
+                            entry.penalty_paid += pending_penalty
+                            remaining    -= pending_penalty
                         else:
                             penalty_paid += remaining
+                            entry.penalty_paid += remaining
                             remaining     = Decimal("0")
                         if remaining >= entry.interest_due:
                             interest_paid += entry.interest_due
@@ -379,8 +467,10 @@ def record_payment(request, loan_pk=None):
 
                 # Update loan totals
                 selected_loan.total_paid        += net_applied
+                selected_loan.total_penalties   += penalties_assessed
                 selected_loan.outstanding_balance = max(
-                    selected_loan.outstanding_balance - net_applied, Decimal("0")
+                    selected_loan.outstanding_balance + penalties_assessed - net_applied,
+                    Decimal("0"),
                 )
                 if selected_loan.outstanding_balance == 0:
                     selected_loan.status          = Loan.Status.COMPLETED

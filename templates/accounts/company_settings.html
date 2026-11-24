@@ -5,369 +5,466 @@
 {% block page_title %}Company Settings{% endblock %}
 
 {% block topbar_actions %}
+  <button type="button" class="btn btn-secondary btn-sm" data-open="m-roles">Role permissions</button>
   <a href="{% url 'accounts:admin_dashboard' %}" class="btn btn-secondary btn-sm">Admin Panel</a>
 {% endblock %}
 
 {% block content %}
-<form method="post" enctype="multipart/form-data" style="max-width:900px;">
-  {% csrf_token %}
+<style>
+.cs{--line:var(--border,rgba(128,128,128,.28));--acc:var(--primary,var(--accent,#2563eb));--soft:color-mix(in srgb,currentColor 6%,transparent);--bg:var(--card-bg,Canvas);max-width:1040px}
+.cs *{box-sizing:border-box}
+.cs [hidden]{display:none!important}
+.cs-layout{display:grid;grid-template-columns:170px minmax(0,1fr);gap:28px;align-items:start}
+.cs-nav{position:sticky;top:76px;display:flex;flex-direction:column;gap:2px;font-size:.9rem}
+.cs-nav a{padding:6px 10px;border-left:2px solid transparent;border-radius:0 6px 6px 0;color:inherit;text-decoration:none;opacity:.6}
+.cs-nav a.on{opacity:1;border-left-color:var(--acc);background:var(--soft)}
+.tools{display:flex;gap:8px;margin-bottom:14px}
+.tools input{flex:1;min-width:0}
 
-  <!-- Company Identity -->
-  <div class="card mb-3">
-    <div class="card-header"><span class="card-title">Company Identity</span></div>
-    <div class="card-body">
+.sec{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:var(--bg);scroll-margin-top:80px}
+.sec-head{all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 18px;cursor:pointer;border-radius:12px}
+.sec-head:focus-visible{outline:2px solid var(--acc)}
+.sec-title{display:flex;flex-direction:column;font-weight:600}
+.sec-title small{margin-top:2px;font-size:.8rem;font-weight:400;opacity:.6}
+.sec-head::after{content:"";width:7px;height:7px;margin-right:4px;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(45deg);opacity:.5;transition:transform .2s}
+.sec.open .sec-head::after{transform:rotate(225deg)}
+.sec-body,.reveal{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .25s ease,visibility 0s .25s}
+.sec.open>.sec-body,.reveal.show{grid-template-rows:1fr;visibility:inherit;transition:grid-template-rows .25s ease,visibility 0s}
+.sec-inner,.reveal>div{min-height:0;overflow:hidden}
+.reveal>div{padding:0 3px;margin:0 -3px}
+.pad{padding:2px 18px 18px}
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="company_name">Company Name <span style="color:var(--red-400)">*</span></label>
-          <input type="text" name="company_name" id="company_name" required
-                 value="{{ s.company_name }}">
-        </div>
-        <div class="form-group">
-          <label for="currency_symbol">Currency Symbol <span style="color:var(--red-400)">*</span></label>
-          <input type="text" name="currency_symbol" id="currency_symbol" required maxlength="10"
-                 value="{{ s.currency_symbol }}" placeholder="UGX">
-          <div class="form-hint">Currency symbol displayed with monetary amounts across the application.</div>
-        </div>
-        <div class="form-group">
-          <label for="company_email">Company Email</label>
-          <input type="email" name="company_email" id="company_email"
-                 value="{{ s.company_email }}">
-        </div>
-      </div>
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px 18px;margin-top:14px}
+.f label,.tg strong{display:block;margin-bottom:6px;font-size:.85rem;font-weight:500}
+.hint{margin:5px 0 0;font-size:.78rem;line-height:1.4;opacity:.6}
+.f.wide{grid-column:1/-1}
+.req{margin-left:3px;color:var(--red-400,#ef4444)}
+.affix{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.affix:focus-within{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 20%,transparent)}
+.affix input{flex:1;min-width:0;border:0!important;border-radius:0;box-shadow:none!important;background:transparent}
+.affix span{display:flex;align-items:center;padding:0 10px;font-size:.8rem;background:var(--soft);opacity:.75;white-space:nowrap}
+.linkbtn{all:unset;cursor:pointer;color:var(--acc);font-size:.78rem}
+.linkbtn:hover{text-decoration:underline}
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="company_phone">Company Phone</label>
-          <input type="tel" name="company_phone" id="company_phone"
-                 value="{{ s.company_phone }}" placeholder="+256700000000">
-        </div>
-        <div class="form-group">
-          <label for="company_website">Company Website</label>
-          <input type="url" name="company_website" id="company_website"
-                 value="{{ s.company_website }}" placeholder="https://example.com">
-        </div>
-      </div>
+.tg{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;margin-top:4px}
+.tg strong{margin:0}
+.switch{position:relative;flex:none;width:42px;height:24px}
+.switch input{appearance:none;position:absolute;inset:0;z-index:1;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.switch i{position:absolute;inset:0;border-radius:99px;background:color-mix(in srgb,currentColor 25%,transparent);transition:background .2s}
+.switch i::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:transform .2s}
+.switch input:checked+i{background:var(--acc)}
+.switch input:checked+i::after{transform:translateX(18px)}
+.switch input:focus-visible+i{outline:2px solid var(--acc);outline-offset:2px}
+.seg{display:inline-flex;gap:2px;padding:3px;border-radius:9px;background:var(--soft)}
+.seg label{position:relative;margin:0!important}
+.seg input{appearance:none;position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.seg span{display:block;padding:6px 14px;border-radius:7px;font-size:.85rem}
+.seg input:checked+span{background:var(--bg);box-shadow:0 1px 3px rgba(0,0,0,.2);font-weight:500}
+.seg input:focus-visible+span{outline:2px solid var(--acc)}
+.divider{border:0;border-top:1px solid var(--line);margin:10px 0}
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="company_registration">Registration Number</label>
-          <input type="text" name="company_registration" id="company_registration"
-                 value="{{ s.company_registration }}" placeholder="e.g., 8001000000000">
-        </div>
-        <div class="form-group">
-          <label for="tax_identification">Tax Identification Number (TIN)</label>
-          <input type="text" name="tax_identification" id="tax_identification"
-                 value="{{ s.tax_identification }}" placeholder="e.g., 1000000000">
-        </div>
-      </div>
+.dl{display:grid;grid-template-columns:110px minmax(0,1fr) 190px 44px;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.dl-name{font-weight:500;font-size:.9rem}
+.pill{font-style:normal;font-size:.72rem;padding:2px 8px;border-radius:99px;text-align:center;background:var(--soft);opacity:.7}
+.pill.on{background:color-mix(in srgb,var(--acc) 18%,transparent);color:var(--acc);opacity:1}
 
-      <div class="form-group">
-        <label for="company_address">Company Address</label>
-        <textarea name="company_address" id="company_address" rows="2">{{ s.company_address }}</textarea>
-      </div>
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+.chips span{padding:4px 10px;border-radius:99px;font-size:.8rem;background:var(--soft)}
+.clamp{max-height:7.5em;margin:0 0 10px;overflow:hidden;white-space:pre-wrap;font:inherit;font-size:.85rem;opacity:.75;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.logo{display:flex;align-items:center;gap:14px}
+.logo-box{display:grid;place-items:center;width:64px;height:64px;overflow:hidden;border:1px dashed var(--line);border-radius:10px;font-size:.7rem;opacity:.9}
+.logo-box img{width:100%;height:100%;object-fit:contain}
 
-      <div class="form-group">
-        <label for="company_logo">Company Logo</label>
-        {% if s.company_logo %}
-        <div style="margin-bottom:8px;">
-          <img src="{{ s.company_logo.url }}" alt="Logo"
-               style="height:48px;object-fit:contain;border-radius:4px;border:1px solid var(--border);">
-        </div>
-        {% endif %}
-        <input type="file" name="company_logo" id="company_logo" accept="image/*">
-      </div>
+.bar{position:sticky;bottom:12px;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.st{display:flex;align-items:center;gap:8px;font-size:.85rem;opacity:.7}
+.st::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.4}
+.bar.dirty .st{opacity:1}
+.bar.dirty .st::before{background:#f59e0b;opacity:1}
 
+.cs dialog{width:min(660px,92vw);padding:0;border:1px solid var(--line);border-radius:14px;background:var(--bg);color:inherit}
+.cs dialog::backdrop{background:rgba(0,0,0,.45);backdrop-filter:blur(2px)}
+.cs dialog[open]{animation:pop .18s ease}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}}
+.dh{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line);font-weight:600}
+.db{max-height:65vh;padding:16px 18px;overflow:auto}
+.df{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:12px 18px;border-top:1px solid var(--line)}
+.df .msg{flex:1;font-size:.8rem;color:var(--red-400,#ef4444)}
+.rr{display:grid;grid-template-columns:1fr 1fr 1fr 40px;gap:8px;margin-bottom:8px}
+.rr.h{font-size:.78rem;opacity:.6;margin-bottom:4px}
+.rr.err input{border-color:var(--red-400,#ef4444)}
+.db textarea{width:100%;font-size:.88rem;line-height:1.5}
+
+@media(max-width:820px){
+  .cs-layout{grid-template-columns:1fr}
+  .cs-nav{display:none}
+  .dl{grid-template-columns:1fr auto}
+  .dl .affix,.dl select{grid-column:1/-1}
+}
+@media(prefers-reduced-motion:reduce){.cs *{transition:none!important;animation:none!important}}
+</style>
+
+<div class="cs">
+<div class="cs-layout">
+
+  <nav class="cs-nav" aria-label="Settings sections">
+    <a href="#s-profile" data-go="s-profile">Company profile</a>
+    <a href="#s-lending" data-go="s-lending">Lending rules</a>
+    <a href="#s-limits" data-go="s-limits">Disbursement limits</a>
+    <a href="#s-fees" data-go="s-fees">Fees</a>
+    <a href="#s-terms" data-go="s-terms">Loan terms</a>
+    <a href="#s-sms" data-go="s-sms">Reminders</a>
+    <a href="#s-modules" data-go="s-modules">Modules</a>
+    <a href="#s-risk" data-go="s-risk">Risk controls</a>
+  </nav>
+
+  <main>
+    <div class="tools">
+      <input type="search" id="q" placeholder="Search settings" aria-label="Search settings">
+      <button type="button" class="btn btn-secondary btn-sm" id="exp">Expand all</button>
+      <button type="button" class="btn btn-secondary btn-sm" id="col">Collapse all</button>
     </div>
+    <p id="none" class="hint" hidden>No settings match your search.</p>
+
+    <form method="post" enctype="multipart/form-data" id="cs-form">
+      {% csrf_token %}
+
+      <!-- Company profile -->
+      <section class="sec open" id="s-profile">
+        <button type="button" class="sec-head" aria-expanded="true"><span class="sec-title">Company profile<small>Name, currency, contacts and logo</small></span></button>
+        <div class="sec-body"><div class="sec-inner"><div class="pad">
+          <div class="grid">
+            <div class="f">
+              <label for="company_name">Company name<b class="req">*</b></label>
+              <input type="text" name="company_name" id="company_name" required value="{{ s.company_name }}">
+            </div>
+            <div class="f">
+              <label for="currency_symbol">Currency symbol<b class="req">*</b></label>
+              <input type="text" name="currency_symbol" id="currency_symbol" required maxlength="10" value="{{ s.currency_symbol }}" placeholder="UGX">
+              <p class="hint">Shown next to every amount in the app.</p>
+            </div>
+            <div class="f">
+              <label for="company_email">Email</label>
+              <input type="email" name="company_email" id="company_email" value="{{ s.company_email }}">
+            </div>
+            <div class="f">
+              <label for="company_phone">Phone</label>
+              <input type="tel" name="company_phone" id="company_phone" value="{{ s.company_phone }}" placeholder="+256700000000">
+            </div>
+            <div class="f">
+              <label for="company_website">Website</label>
+              <input type="url" name="company_website" id="company_website" value="{{ s.company_website }}" placeholder="https://example.com">
+            </div>
+            <div class="f">
+              <label for="company_registration">Registration number</label>
+              <input type="text" name="company_registration" id="company_registration" value="{{ s.company_registration }}" placeholder="e.g., 8001000000000">
+            </div>
+            <div class="f">
+              <label for="tax_identification">Tax identification number (TIN)</label>
+              <input type="text" name="tax_identification" id="tax_identification" value="{{ s.tax_identification }}" placeholder="e.g., 1000000000">
+            </div>
+            <div class="f">
+              <label for="company_logo">Logo</label>
+              <div class="logo">
+                <div class="logo-box">
+                  <img id="logo-prev" alt="Company logo" {% if s.company_logo %}src="{{ s.company_logo.url }}"{% else %}hidden{% endif %}>
+                  <span id="logo-ph" {% if s.company_logo %}hidden{% endif %}>No logo</span>
+                </div>
+                <label class="btn btn-secondary btn-sm" style="margin:0;cursor:pointer;">Change logo
+                  <input type="file" name="company_logo" id="company_logo" accept="image/*" hidden>
+                </label>
+              </div>
+            </div>
+            <div class="f wide">
+              <label for="company_address">Address</label>
+              <textarea name="company_address" id="company_address" rows="2">{{ s.company_address }}</textarea>
+            </div>
+          </div>
+        </div></div></div>
+      </section>
+
+      <!-- Lending rules -->
+      <section class="sec" id="s-lending">
+        <button type="button" class="sec-head" aria-expanded="false"><span class="sec-title">Lending rules<small>Approvals, credit limits and penalties</small></span></button>
+        <div class="sec-body"><div class="sec-inner"><div class="pad">
+          <div class="grid">
+            <div class="f">
+              <label for="manager_approval_limit">Manager approval limit<b class="req">*</b></label>
+              <div class="affix"><span>{% currency_symbol %}</span>
+                <input type="number" name="manager_approval_limit" id="manager_approval_limit" value="{{ s.manager_approval_limit }}" min="0" step="100000" required></div>
+              <p class="hint">Loans above this amount need CEO approval. <button type="button" class="linkbtn" data-open="m-roles">See role permissions</button></p>
+            </div>
+            <div class="f">
+              <label for="max_active_loans_per_client">Max active loans per client</label>
+              <input type="number" name="max_active_loans_per_client" id="max_active_loans_per_client" value="{{ s.max_active_loans_per_client }}" min="1" max="10">
+              <p class="hint">Simultaneous active loans allowed per client.</p>
+            </div>
+            <div class="f">
+              <label for="income_multiplier">Income multiplier<b class="req">*</b></label>
+              <div class="affix"><input type="number" name="income_multiplier" id="income_multiplier" value="{{ s.income_multiplier }}" min="1" max="10" step="0.5" required><span>&times; income</span></div>
+              <p class="hint">Max loan = monthly income &times; this value.</p>
+            </div>
+            <div class="f">
+              <label for="collateral_haircut">Collateral haircut<b class="req">*</b></label>
+              <div class="affix"><input type="number" name="collateral_haircut" id="collateral_haircut" value="{{ s.collateral_haircut }}" min="10" max="100" step="5" required><span>%</span></div>
+              <p class="hint">Share of collateral value used as the loan floor.</p>
+            </div>
+            <div class="f">
+              <label for="grace_period_days">Grace period</label>
+              <div class="affix"><input type="number" name="grace_period_days" id="grace_period_days" value="{{ s.grace_period_days }}" min="0" max="15"><span>days</span></div>
+              <p class="hint">Days before a payment is marked overdue.</p>
+            </div>
+          </div>
+
+          <hr class="divider">
+          <div class="tg">
+            <div><strong>Charge late-payment penalties</strong>
+              <p class="hint">When off, no new penalties accrue. Existing loan terms and penalties already recorded stay as they are.</p></div>
+            <label class="switch"><input type="checkbox" name="penalties_enabled" id="penalties_enabled" {% if s.penalties_enabled %}checked{% endif %}><i></i></label>
+          </div>
+          <div class="reveal" data-when="penalties_enabled"><div>
+            <div class="grid" style="margin-top:0">
+              <div class="f">
+                <label for="penalty_frequency">Penalty application frequency</label>
+                <select name="penalty_frequency" id="penalty_frequency">
+                  {% for value, label in penalty_frequency_choices %}
+                  <option value="{{ value }}" {% if s.penalty_frequency == value %}selected{% endif %}>{{ label }}</option>
+                  {% endfor %}
+                </select>
+                <p class="hint" id="penalty-frequency-hint">Monthly penalties apply for each started 30-day overdue period.</p>
+              </div>
+              <div class="f">
+                <label for="default_penalty_rate">Default penalty rate<b class="req">*</b></label>
+                <div class="affix"><input type="number" name="default_penalty_rate" id="default_penalty_rate" value="{{ s.default_penalty_rate }}" min="0" max="50" step="0.5" required><span id="penalty-rate-unit">% / {{ s.get_penalty_frequency_display|lower }}</span></div>
+                <p class="hint">Applied to overdue balances once per selected interval.</p>
+              </div>
+            </div>
+          </div></div>
+        </div></div></div>
+      </section>
+
+      <!-- Disbursement limits -->
+      <section class="sec" id="s-limits">
+        <button type="button" class="sec-head" aria-expanded="false"><span class="sec-title">Disbursement limits<small>Cap the principal disbursed per period</small></span></button>
+        <div class="sec-body"><div class="sec-inner"><div class="pad">
+          <p class="hint" style="margin:10px 0 8px;">Set a limit to 0 to turn it off. Each limit applies to all staff or to one role.</p>
+          {% for period in disbursement_limit_periods %}
+          <div class="dl">
+            <span class="dl-name">{{ period.label }}</span>
+            <div class="affix"><span>{% currency_symbol %}</span>
+              <input type="number" name="{{ period.key }}_disbursement_limit" id="{{ period.key }}_disbursement_limit" aria-label="{{ period.label }} limit" value="{{ period.limit|default:'0' }}" min="0" step="1000"></div>
+            <select name="{{ period.key }}_disbursement_limit_scope" id="{{ period.key }}_disbursement_limit_scope" aria-label="{{ period.label }} limit applies to">
+              {% for value, scope_label in disbursement_limit_scopes %}
+              <option value="{{ value }}" {% if period.scope == value %}selected{% endif %}>{{ scope_label }}</option>
+              {% endfor %}
+            </select>
+            <em class="pill">Off</em>
+          </div>
+          {% endfor %}
+        </div></div></div>
+      </section>
+
+      <!-- Fees -->
+      <section class="sec" id="s-fees">
+        <button type="button" class="sec-head" aria-expanded="false"><span class="sec-title">Fees<small>Processing, early repayment and restructuring</small></span></button>
+        <div class="sec-body"><div class="sec-inner"><div class="pad">
+          <div class="f" style="margin-top:14px;">
+            <label>Processing fee method</label>
+            <div class="seg" role="radiogroup">
+              <label><input type="radio" name="processing_fee_method" value="PERCENTAGE" {% if s.processing_fee_method != 'RANGE' %}checked{% endif %}><span>Percentage</span></label>
+              <label><input type="radio" name="processing_fee_method" value="RANGE" {% if s.processing_fee_method == 'RANGE' %}checked{% endif %}><span>By amount range</span></label>
+            </div>
+          </div>
+
+          <div class="reveal" data-radio="processing_fee_method=PERCENTAGE"><div>
+            <div class="grid"><div class="f">
+              <label for="default_processing_fee_percent">Processing fee</label>
+              <div class="affix"><input type="number" name="default_processing_fee_percent" id="default_processing_fee_percent" value="{{ s.default_processing_fee_percent }}" min="0" max="10" step="0.1"><span>%</span></div>
+            </div></div>
+          </div></div>
+
+          <div class="reveal" data-radio="processing_fee_method=RANGE"><div>
+            <div class="f wide" style="margin-top:14px;">
+              <label>Processing fee ranges</label>
+              <div class="chips" id="chips"></div>
+              <button type="button" class="btn btn-secondary btn-sm" data-open="m-ranges">Edit ranges</button>
+              <textarea name="processing_fee_ranges" id="processing_fee_ranges" hidden>{{ s.processing_fee_ranges }}</textarea>
+              <p class="hint">Amounts that match no range are charged no fee.</p>
+            </div>
+          </div></div>
+
+          <div class="grid">
+            <div class="f">
+              <label for="early_repayment_penalty_percent">Early repayment penalty</label>
+              <div class="affix"><input type="number" name="early_repayment_penalty_percent" id="early_repayment_penalty_percent" value="{{ s.early_repayment_penalty_percent }}" min="0" max="10" step="0.1"><span>%</span></div>
+              <p class="hint">Use 0 for no penalty.</p>
+            </div>
+            <div class="f">
+              <label for="loan_restructure_fee">Loan restructure fee</label>
+              <div class="affix"><span>{% currency_symbol %}</span>
+                <input type="number" name="loan_restructure_fee" id="loan_restructure_fee" value="{{ s.loan_restructure_fee }}" min="0" step="1000"></div>
+              <p class="hint">Flat fee charged when a loan is restructured.</p>
+            </div>
+          </div>
+        </div></div></div>
+      </section>
+
+      <!-- Loan terms -->
+      <section class="sec" id="s-terms">
+        <button type="button" class="sec-head" aria-expanded="false"><span class="sec-title">Loan terms and conditions<small>Printed on loan schedules</small></span></button>
+        <div class="sec-body"><div class="sec-inner"><div class="pad">
+          <div class="f wide" style="margin-top:14px;">
+            <label>Printable loan terms</label>
+            <pre class="clamp" id="terms-prev"></pre>
+            <button type="button" class="btn btn-secondary btn-sm" data-open="m-terms">Edit terms</button>
+            <textarea name="loan_terms_and_conditions" id="loan_terms_and_conditions" hidden>{{ s.loan_terms_and_conditions }}</textarea>
+            <p class="hint">Shown on printable and downloadable loan schedules. Keep them consistent with your signed loan agreement and have qualified local counsel review them. Leave unchanged to use the standard terms.</p>
+          </div>
+        </div></div></div>
+      </section>
+
+      <!-- Reminders -->
+      <section class="sec" id="s-sms">
+        <button type="button" class="sec-head" aria-expanded="false"><span class="sec-title">Reminders<small>SMS payment reminders and holiday handling</small></span></button>
+        <div class="sec-body"><div class="sec-inner"><div class="pad">
+          <div class="tg">
+            <div><strong>SMS payment reminders</strong></div>
+            <label class="switch"><input type="checkbox" name="sms_reminders_enabled" id="sms_reminders_enabled" {% if s.sms_reminders_enabled %}checked{% endif %}><i></i></label>
+          </div>
+          <div class="reveal" data-when="sms_reminders_enabled"><div>
+            <div class="grid" style="margin-top:0">
+              <div class="f">
+                <label for="reminder_days_before">Send reminder before due date</label>
+                <div class="affix"><input type="number" name="reminder_days_before" id="reminder_days_before" value="{{ s.reminder_days_before }}" min="1" max="14"><span>days</span></div>
+              </div>
+              <div class="f">
+                <label for="sms_sender_id">SMS sender ID</label>
+                <input type="text" name="sms_sender_id" id="sms_sender_id" value="{{ s.sms_sender_id }}" maxlength="20">
+              </div>
+            </div>
+          </div></div>
+          <hr class="divider">
+          <div class="tg">
+            <div><strong>Move holiday due dates to the next working day</strong></div>
+            <label class="switch"><input type="checkbox" name="adjust_due_dates_for_holidays" {% if s.adjust_due_dates_for_holidays %}checked{% endif %}><i></i></label>
+          </div>
+        </div></div></div>
+      </section>
+
+      <!-- Modules -->
+      <section class="sec" id="s-modules">
+        <button type="button" class="sec-head" aria-expanded="false"><span class="sec-title">Modules<small>Savings accounts and share capital (future modules)</small></span></button>
+        <div class="sec-body"><div class="sec-inner"><div class="pad">
+          <div class="tg">
+            <div><strong>Savings accounts</strong></div>
+            <label class="switch"><input type="checkbox" name="savings_enabled" id="savings_enabled" {% if s.savings_enabled %}checked{% endif %}><i></i></label>
+          </div>
+          <div class="reveal" data-when="savings_enabled"><div>
+            <div class="grid" style="margin-top:0">
+              <div class="f">
+                <label for="default_savings_interest_rate">Savings interest rate</label>
+                <div class="affix"><input type="number" name="default_savings_interest_rate" id="default_savings_interest_rate" value="{{ s.default_savings_interest_rate }}" min="0" max="20" step="0.1"><span>% / year</span></div>
+              </div>
+              <div class="f">
+                <label for="minimum_savings_balance">Minimum savings balance</label>
+                <div class="affix"><span>{% currency_symbol %}</span><input type="number" name="minimum_savings_balance" id="minimum_savings_balance" value="{{ s.minimum_savings_balance }}" min="0" step="1000"></div>
+              </div>
+            </div>
+          </div></div>
+
+          <hr class="divider">
+          <div class="tg">
+            <div><strong>Share capital</strong></div>
+            <label class="switch"><input type="checkbox" name="shares_enabled" id="shares_enabled" {% if s.shares_enabled %}checked{% endif %}><i></i></label>
+          </div>
+          <div class="reveal" data-when="shares_enabled"><div>
+            <div class="grid" style="margin-top:0">
+              <div class="f">
+                <label for="share_price">Price per share</label>
+                <div class="affix"><span>{% currency_symbol %}</span><input type="number" name="share_price" id="share_price" value="{{ s.share_price }}" min="1000" step="1000"></div>
+              </div>
+              <div class="f">
+                <label>Dividend frequency</label>
+                <div class="seg" role="radiogroup">
+                  <label><input type="radio" name="dividend_frequency" value="MONTHLY" {% if s.dividend_frequency != "QUARTERLY" and s.dividend_frequency != "ANNUALLY" %}checked{% endif %}><span>Monthly</span></label>
+                  <label><input type="radio" name="dividend_frequency" value="QUARTERLY" {% if s.dividend_frequency == "QUARTERLY" %}checked{% endif %}><span>Quarterly</span></label>
+                  <label><input type="radio" name="dividend_frequency" value="ANNUALLY" {% if s.dividend_frequency == "ANNUALLY" %}checked{% endif %}><span>Annually</span></label>
+                </div>
+              </div>
+              <div class="f">
+                <label for="minimum_shares">Minimum shares per member</label>
+                <input type="number" name="minimum_shares" id="minimum_shares" value="{{ s.minimum_shares }}" min="1" max="10000">
+              </div>
+              <div class="f">
+                <label for="maximum_shares">Maximum shares per member</label>
+                <input type="number" name="maximum_shares" id="maximum_shares" value="{{ s.maximum_shares }}" min="1" max="100000">
+              </div>
+            </div>
+          </div></div>
+        </div></div></div>
+      </section>
+
+      <!-- Risk -->
+      <section class="sec" id="s-risk">
+        <button type="button" class="sec-head" aria-expanded="false"><span class="sec-title">Risk controls<small>Portfolio at risk and write-off thresholds</small></span></button>
+        <div class="sec-body"><div class="sec-inner"><div class="pad">
+          <div class="grid">
+            <div class="f">
+              <label for="max_portfolio_at_risk_percent">Max portfolio at risk</label>
+              <div class="affix"><input type="number" name="max_portfolio_at_risk_percent" id="max_portfolio_at_risk_percent" value="{{ s.max_portfolio_at_risk_percent }}" min="0" max="50" step="0.5"><span>%</span></div>
+              <p class="hint">Alert when PAR goes above this.</p>
+            </div>
+            <div class="f">
+              <label for="auto_write_off_days">Auto write-off after</label>
+              <div class="affix"><input type="number" name="auto_write_off_days" id="auto_write_off_days" value="{{ s.auto_write_off_days }}" min="90" max="365" step="30"><span>days overdue</span></div>
+              <p class="hint">Loans overdue this long are flagged for write-off.</p>
+            </div>
+          </div>
+        </div></div></div>
+      </section>
+
+      <div class="bar" id="bar">
+        <span class="st" id="st" role="status">No unsaved changes</span>
+        <span style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button type="button" class="btn btn-secondary" id="discard">Discard</button>
+          <a href="{% url 'accounts:admin_dashboard' %}" class="btn btn-secondary">Cancel</a>
+          <button type="submit" class="btn btn-primary" id="save">Save settings</button>
+        </span>
+      </div>
+    </form>
+  </main>
+</div>
+
+<!-- Range editor -->
+<dialog id="m-ranges" aria-labelledby="mr-t">
+  <div class="dh"><span id="mr-t">Processing fee ranges</span><button type="button" class="btn btn-secondary btn-sm" data-close aria-label="Close">&times;</button></div>
+  <div class="db">
+    <p class="hint" style="margin:0 0 12px;">Limits are inclusive and the first matching range wins. Leave "To" empty for an "and above" tier.</p>
+    <div class="rr h"><span>From</span><span>To</span><span>Fee</span><span></span></div>
+    <div id="rows"></div>
+    <button type="button" class="btn btn-secondary btn-sm" id="add-row">Add range</button>
+    <button type="button" class="linkbtn" id="example" style="margin-left:10px;">Use example tiers</button>
   </div>
+  <div class="df"><span class="msg" id="range-msg"></span>
+    <button type="button" class="btn btn-secondary" data-close>Cancel</button>
+    <button type="button" class="btn btn-primary" id="apply-ranges">Apply</button></div>
+</dialog>
 
-  <!-- Loan Document Terms -->
-  <div class="card mb-3">
-    <div class="card-header"><span class="card-title">Loan Document Terms &amp; Conditions</span></div>
-    <div class="card-body">
-      <div class="form-group">
-        <label for="loan_terms_and_conditions">Printable loan terms</label>
-        <textarea name="loan_terms_and_conditions" id="loan_terms_and_conditions" rows="18">{{ s.loan_terms_and_conditions }}</textarea>
-        <div class="form-hint">
-          These terms appear on printable and downloadable loan schedules. Keep them consistent with your signed loan agreement and have them reviewed by qualified local counsel. Leave unchanged to use the standard terms.
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- Terms editor -->
+<dialog id="m-terms" aria-labelledby="mt-t">
+  <div class="dh"><span id="mt-t">Loan terms and conditions</span><button type="button" class="btn btn-secondary btn-sm" data-close aria-label="Close">&times;</button></div>
+  <div class="db"><textarea id="terms-edit" rows="16" aria-label="Loan terms"></textarea></div>
+  <div class="df"><span class="msg" id="terms-count" style="color:inherit;opacity:.6;"></span>
+    <button type="button" class="btn btn-secondary" data-close>Cancel</button>
+    <button type="button" class="btn btn-primary" id="apply-terms">Apply</button></div>
+</dialog>
 
-  <!-- Loan Business Rules -->
-  <div class="card mb-3">
-    <div class="card-header"><span class="card-title">Loan Business Rules</span></div>
-    <div class="card-body">
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="manager_approval_limit">Manager Approval Limit ({% currency_symbol %}) <span style="color:var(--red-400)">*</span></label>
-          <input type="number" name="manager_approval_limit" id="manager_approval_limit"
-                 value="{{ s.manager_approval_limit }}" min="0" step="100000" required>
-          <div class="form-hint">Loans above this amount require CEO approval.</div>
-        </div>
-        <div class="form-group">
-          <label for="max_active_loans_per_client">Max Active Loans Per Client</label>
-          <input type="number" name="max_active_loans_per_client" id="max_active_loans_per_client"
-                 value="{{ s.max_active_loans_per_client }}" min="1" max="10" style="max-width:120px;">
-          <div class="form-hint">Maximum simultaneous active loans per client.</div>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="default_penalty_rate">Default Penalty Rate (% / month) <span style="color:var(--red-400)">*</span></label>
-          <input type="number" name="default_penalty_rate" id="default_penalty_rate"
-                 value="{{ s.default_penalty_rate }}" min="0" max="50" step="0.5" required>
-          <div class="form-hint">Applied to overdue loan balances each month.</div>
-        </div>
-        <div class="form-group">
-          <label for="income_multiplier">Income Multiplier <span style="color:var(--red-400)">*</span></label>
-          <input type="number" name="income_multiplier" id="income_multiplier"
-                 value="{{ s.income_multiplier }}" min="1" max="10" step="0.5" required>
-          <div class="form-hint">Max loan = monthly income × this value (e.g. 3 = 3× income).</div>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="collateral_haircut">Collateral Haircut (%) <span style="color:var(--red-400)">*</span></label>
-          <input type="number" name="collateral_haircut" id="collateral_haircut"
-                 value="{{ s.collateral_haircut }}" min="10" max="100" step="5" required>
-          <div class="form-hint">Percentage of collateral value used as loan floor.</div>
-        </div>
-        <div class="form-group">
-          <label for="grace_period_days">Grace Period (Days)</label>
-          <input type="number" name="grace_period_days" id="grace_period_days"
-                 value="{{ s.grace_period_days }}" min="0" max="15" style="max-width:120px;">
-          <div class="form-hint">Days before marking payment as overdue.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Disbursement Limits -->
-  <div class="card mb-3">
-    <div class="card-header"><span class="card-title">Disbursement Limits</span></div>
-    <div class="card-body">
-      <div class="form-hint" style="margin-bottom:12px;">
-        Limits are the total loan principal that may be disbursed in each period. A zero amount disables that limit.
-        Choose whether the limit applies to all staff or only one staff role.
-      </div>
-      {% for period in disbursement_limit_periods %}
-      <div class="form-row">
-        <div class="form-group">
-          <label for="{{ period.key }}_disbursement_limit">{{ period.label }} Limit ({% currency_symbol %})</label>
-          <input type="number" name="{{ period.key }}_disbursement_limit" id="{{ period.key }}_disbursement_limit"
-                 value="{{ period.limit|default:'0' }}" min="0" step="1000">
-        </div>
-        <div class="form-group">
-          <label for="{{ period.key }}_disbursement_limit_scope">Applies To</label>
-          <select name="{{ period.key }}_disbursement_limit_scope" id="{{ period.key }}_disbursement_limit_scope">
-            {% for value, scope_label in disbursement_limit_scopes %}
-            <option value="{{ value }}" {% if period.scope == value %}selected{% endif %}>{{ scope_label }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <!-- Fee Settings -->
-  <div class="card mb-3">
-    <div class="card-header"><span class="card-title">Fee Settings</span></div>
-    <div class="card-body">
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="processing_fee_method">Processing Fee Method</label>
-          <select name="processing_fee_method" id="processing_fee_method">
-            <option value="PERCENTAGE" {% if s.processing_fee_method == 'PERCENTAGE' %}selected{% endif %}>Percentage</option>
-            <option value="RANGE" {% if s.processing_fee_method == 'RANGE' %}selected{% endif %}>Range-based</option>
-          </select>
-          <div class="form-hint">Choose whether processing fees are charged as a percentage or by amount ranges.</div>
-        </div>
-        <div class="form-group">
-          <label for="default_processing_fee_percent">Processing Fee (%)</label>
-          <input type="number" name="default_processing_fee_percent" id="default_processing_fee_percent"
-                 value="{{ s.default_processing_fee_percent }}" min="0" max="10" step="0.1">
-          <div class="form-hint">Used when the fee method is percentage.</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="processing_fee_ranges">Processing Fee Ranges</label>
-        <textarea name="processing_fee_ranges" id="processing_fee_ranges" rows="8" placeholder="0-50000:4000&#10;100000-200000:8000&#10;200001-300001:10000&#10;300001-450000:12000&#10;450001-600000:15000&#10;600001-800000:20000&#10;800001-1000000:30000&#10;1000001-:40000">{{ s.processing_fee_ranges }}</textarea>
-        <div class="form-hint">Enter each range as MIN-MAX:AMOUNT per line. Endpoints are inclusive, unmatched amounts have no range fee, and the first matching range wins. Use a blank upper limit such as 1000001-:40000 for an 'and above' tier.</div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="early_repayment_penalty_percent">Early Repayment Penalty (%)</label>
-          <input type="number" name="early_repayment_penalty_percent" id="early_repayment_penalty_percent"
-                 value="{{ s.early_repayment_penalty_percent }}" min="0" max="10" step="0.1">
-          <div class="form-hint">Penalty for early loan repayment (0 = no penalty).</div>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="loan_restructure_fee">Loan Restructure Fee ({% currency_symbol %})</label>
-          <input type="number" name="loan_restructure_fee" id="loan_restructure_fee"
-                 value="{{ s.loan_restructure_fee }}" min="0" step="1000">
-          <div class="form-hint">Flat fee charged for loan restructuring.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- SMS / Reminder Settings -->
-  <div class="card mb-3">
-    <div class="card-header"><span class="card-title">SMS & Reminder Settings</span></div>
-    <div class="card-body">
-
-      <div class="form-group">
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-          <input type="checkbox" name="sms_reminders_enabled" style="width:auto;"
-                 {% if s.sms_reminders_enabled %}checked{% endif %}>
-          <span>Enable SMS payment reminders</span>
-        </label>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="reminder_days_before">Days Before Due Date to Send Reminder</label>
-          <input type="number" name="reminder_days_before" id="reminder_days_before"
-                 value="{{ s.reminder_days_before }}" min="1" max="14" style="max-width:120px;">
-        </div>
-        <div class="form-group">
-          <label for="sms_sender_id">SMS Sender ID</label>
-          <input type="text" name="sms_sender_id" id="sms_sender_id"
-                 value="{{ s.sms_sender_id }}" maxlength="20" style="max-width:200px;">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-          <input type="checkbox" name="adjust_due_dates_for_holidays" style="width:auto;"
-                 {% if s.adjust_due_dates_for_holidays %}checked{% endif %}>
-          <span>Adjust due dates that fall on holidays to next working day</span>
-        </label>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Savings Settings -->
-  <div class="card mb-3">
-    <div class="card-header"><span class="card-title">Savings Settings (Future Module)</span></div>
-    <div class="card-body">
-
-      <div class="form-group">
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-          <input type="checkbox" name="savings_enabled" style="width:auto;"
-                 {% if s.savings_enabled %}checked{% endif %}>
-          <span>Enable Savings Accounts Module</span>
-        </label>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="default_savings_interest_rate">Savings Interest Rate (% / year)</label>
-          <input type="number" name="default_savings_interest_rate" id="default_savings_interest_rate"
-                 value="{{ s.default_savings_interest_rate }}" min="0" max="20" step="0.1" style="max-width:150px;">
-        </div>
-        <div class="form-group">
-          <label for="minimum_savings_balance">Minimum Savings Balance ({% currency_symbol %})</label>
-          <input type="number" name="minimum_savings_balance" id="minimum_savings_balance"
-                 value="{{ s.minimum_savings_balance }}" min="0" step="1000" style="max-width:200px;">
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Share Capital Settings -->
-  <div class="card mb-3">
-    <div class="card-header"><span class="card-title">Share Capital Settings (Future Module)</span></div>
-    <div class="card-body">
-
-      <div class="form-group">
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-          <input type="checkbox" name="shares_enabled" style="width:auto;"
-                 {% if s.shares_enabled %}checked{% endif %}>
-          <span>Enable Share Capital Module</span>
-        </label>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="share_price">Price Per Share ({% currency_symbol %})</label>
-          <input type="number" name="share_price" id="share_price"
-                 value="{{ s.share_price }}" min="1000" step="1000" style="max-width:200px;">
-        </div>
-        <div class="form-group">
-          <label for="dividend_frequency">Dividend Frequency</label>
-          <select name="dividend_frequency" id="dividend_frequency" style="max-width:200px;">
-            <option value="MONTHLY" {% if s.dividend_frequency == "MONTHLY" %}selected{% endif %}>Monthly</option>
-            <option value="QUARTERLY" {% if s.dividend_frequency == "QUARTERLY" %}selected{% endif %}>Quarterly</option>
-            <option value="ANNUALLY" {% if s.dividend_frequency == "ANNUALLY" %}selected{% endif %}>Annually</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="minimum_shares">Minimum Shares Per Member</label>
-          <input type="number" name="minimum_shares" id="minimum_shares"
-                 value="{{ s.minimum_shares }}" min="1" max="10000" style="max-width:150px;">
-        </div>
-        <div class="form-group">
-          <label for="maximum_shares">Maximum Shares Per Member</label>
-          <input type="number" name="maximum_shares" id="maximum_shares"
-                 value="{{ s.maximum_shares }}" min="1" max="100000" style="max-width:150px;">
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Risk Management -->
-  <div class="card mb-3">
-    <div class="card-header"><span class="card-title">Risk Management</span></div>
-    <div class="card-body">
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="max_portfolio_at_risk_percent">Max Portfolio at Risk (%)</label>
-          <input type="number" name="max_portfolio_at_risk_percent" id="max_portfolio_at_risk_percent"
-                 value="{{ s.max_portfolio_at_risk_percent }}" min="0" max="50" step="0.5" style="max-width:150px;">
-          <div class="form-hint">Maximum acceptable PAR percentage before alerts.</div>
-        </div>
-        <div class="form-group">
-          <label for="auto_write_off_days">Auto Write-Off Days</label>
-          <input type="number" name="auto_write_off_days" id="auto_write_off_days"
-                 value="{{ s.auto_write_off_days }}" min="90" max="365" step="30" style="max-width:150px;">
-          <div class="form-hint">Days overdue before loan is flagged for write-off.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Role Permissions Reference -->
-  <div class="card mb-3">
-    <div class="card-header"><span class="card-title">Role Permissions Reference</span></div>
-    <div class="card-body" style="padding:0;">
-      <div class="table-wrap">
+<!-- Role permissions -->
+<dialog id="m-roles" aria-labelledby="mp-t">
+  <div class="dh"><span id="mp-t">Role permissions</span><button type="button" class="btn btn-secondary btn-sm" data-close aria-label="Close">&times;</button></div>
+  <div class="db" style="padding:0;">
+    <div class="table-wrap">
       <table class="aba-table">
-        <thead>
-          <tr><th>Permission</th><th>Cashier</th><th>Manager</th><th>CEO</th></tr>
-        </thead>
+        <thead><tr><th>Permission</th><th>Cashier</th><th>Manager</th><th>CEO</th></tr></thead>
         <tbody>
           <tr><td>Record payments</td><td>✓</td><td>✓</td><td>✓</td></tr>
           <tr><td>Register clients</td><td>✓</td><td>✓</td><td>✓</td></tr>
@@ -376,21 +473,189 @@
           <tr><td>Approve loans above limit</td><td>—</td><td>—</td><td>✓</td></tr>
           <tr><td>View reports</td><td>—</td><td>✓</td><td>✓</td></tr>
           <tr><td>Manage loan products</td><td>—</td><td>—</td><td>✓</td></tr>
-          <tr><td>Manage users & settings</td><td>—</td><td>—</td><td>✓</td></tr>
+          <tr><td>Manage users &amp; settings</td><td>—</td><td>—</td><td>✓</td></tr>
           <tr><td>Blacklist clients</td><td>—</td><td>—</td><td>✓</td></tr>
           <tr><td>Manage guarantors</td><td>—</td><td>View</td><td>✓</td></tr>
           <tr><td>Restructure loans</td><td>—</td><td>—</td><td>✓</td></tr>
           <tr><td>Write-off loans</td><td>—</td><td>—</td><td>✓</td></tr>
         </tbody>
       </table>
-      </div>
     </div>
   </div>
+  <div class="df"><button type="button" class="btn btn-secondary" data-close>Close</button></div>
+</dialog>
+</div>
 
-  <div class="flex gap-2 mb-4" style="flex-wrap:wrap;">
-    <button type="submit" class="btn btn-primary btn-lg">Save Settings</button>
-    <a href="{% url 'accounts:admin_dashboard' %}" class="btn btn-secondary btn-lg">Cancel</a>
-  </div>
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const form = $('#cs-form'), bar = $('#bar'), secs = $$('.sec');
+  let saving = false;
 
-</form>
+  /* Accordion */
+  const setOpen = (s, o) => { s.classList.toggle('open', o); $('.sec-head', s).setAttribute('aria-expanded', o); };
+  secs.forEach(s => $('.sec-head', s).onclick = () => setOpen(s, !s.classList.contains('open')));
+  $('#exp').onclick = () => secs.forEach(s => setOpen(s, true));
+  $('#col').onclick = () => secs.forEach(s => setOpen(s, false));
+
+  /* Side nav and scroll spy */
+  const links = $$('.cs-nav a');
+  links.forEach(a => a.onclick = e => {
+    e.preventDefault();
+    const s = document.getElementById(a.dataset.go);
+    setOpen(s, true);
+    s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', '#' + s.id);
+  });
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) links.forEach(a => a.classList.toggle('on', a.dataset.go === en.target.id));
+  }), { rootMargin: '-20% 0px -70% 0px' });
+  secs.forEach(s => io.observe(s));
+  const hash = document.getElementById(location.hash.slice(1));
+  if (hash && hash.classList.contains('sec')) setOpen(hash, true);
+
+  /* Search */
+  $('#q').oninput = e => {
+    const q = e.target.value.trim().toLowerCase();
+    secs.forEach(s => {
+      let any = false;
+      $$('.f,.tg,.dl', s).forEach(i => {
+        const m = !q || i.textContent.toLowerCase().includes(q);
+        i.hidden = !m; any = any || m;
+      });
+      s.hidden = !any;
+      if (q && any) setOpen(s, true);
+    });
+    $('#none').hidden = !secs.every(s => s.hidden);
+  };
+
+  /* Conditional reveals and limit pills */
+  const sync = () => $$('.reveal', form).forEach(r => {
+    let on;
+    if (r.dataset.when) on = $('#' + r.dataset.when).checked;
+    else { const [n, v] = r.dataset.radio.split('='); on = form.elements[n].value === v; }
+    r.classList.toggle('show', on);
+  });
+  const penaltyFrequency = $('#penalty_frequency');
+  const penaltyRateUnit = $('#penalty-rate-unit');
+  const penaltyFrequencyHint = $('#penalty-frequency-hint');
+  const syncPenaltyRateUnit = () => {
+    const daily = penaltyFrequency.value === 'DAILY';
+    penaltyRateUnit.textContent = daily ? '% / day' : '% / month';
+    penaltyFrequencyHint.textContent = daily
+      ? 'Daily penalties apply for each overdue day.'
+      : 'Monthly penalties apply for each started 30-day overdue period.';
+  };
+  penaltyFrequency.addEventListener('change', syncPenaltyRateUnit);
+  const pills = () => $$('.dl').forEach(d => {
+    const on = +$('input[type=number]', d).value > 0, p = $('.pill', d);
+    p.classList.toggle('on', on); p.textContent = on ? 'On' : 'Off';
+  });
+
+  /* Logo preview */
+  const lf = $('#company_logo'), li = $('#logo-prev'), lp = $('#logo-ph'), orig = li.getAttribute('src');
+  lf.addEventListener('change', () => {
+    const f = lf.files[0];
+    if (f) { li.src = URL.createObjectURL(f); li.hidden = false; lp.hidden = true; }
+  });
+  const logoReset = () => {
+    if (orig) { li.src = orig; li.hidden = false; lp.hidden = true; }
+    else { li.removeAttribute('src'); li.hidden = true; lp.hidden = false; }
+  };
+
+  /* Modals */
+  $$('[data-open]').forEach(b => b.onclick = () => {
+    const d = document.getElementById(b.dataset.open);
+    d.dispatchEvent(new Event('prepare')); d.showModal();
+  });
+  $$('[data-close]').forEach(b => b.onclick = () => b.closest('dialog').close());
+  $$('.cs dialog').forEach(d => d.addEventListener('click', e => { if (e.target === d) d.close(); }));
+
+  /* Fee ranges */
+  const ta = $('#processing_fee_ranges'), rows = $('#rows');
+  const fmt = n => Number(n).toLocaleString('en-UG');
+  const RE = /^(\d+(?:\.\d+)?)\s*-\s*(\d*(?:\.\d+)?)\s*:\s*(\d+(?:\.\d+)?)$/;
+  const lines = t => t.split('\n').map(l => l.trim()).filter(Boolean);
+  const parse = t => lines(t).map(l => l.match(RE)).filter(Boolean).map(m => [m[1], m[2], m[3]]);
+  const chips = () => {
+    const r = parse(ta.value);
+    $('#chips').innerHTML = r.length
+      ? r.map(([a, b, c]) => `<span>${fmt(a)} to ${b ? fmt(b) : 'above'}: ${fmt(c)}</span>`).join('')
+      : '<span>No ranges yet</span>';
+  };
+  const addRow = (a = '', b = '', c = '') => {
+    const d = document.createElement('div');
+    d.className = 'rr';
+    d.innerHTML = `<input type="number" min="0" aria-label="From" value="${a}"><input type="number" min="0" aria-label="To" placeholder="No limit" value="${b}"><input type="number" min="0" aria-label="Fee" value="${c}"><button type="button" class="btn btn-secondary btn-sm" aria-label="Remove range">&times;</button>`;
+    $('button', d).onclick = () => d.remove();
+    rows.append(d);
+  };
+  $('#m-ranges').addEventListener('prepare', () => {
+    rows.innerHTML = ''; $('#range-msg').textContent = '';
+    const r = parse(ta.value);
+    r.length ? r.forEach(x => addRow(...x)) : addRow();
+    const skipped = lines(ta.value).length - r.length;
+    if (skipped > 0) $('#range-msg').textContent = skipped + ' line(s) could not be read and will be dropped.';
+  });
+  $('#add-row').onclick = () => addRow();
+  $('#example').onclick = () => {
+    rows.innerHTML = '';
+    [[0, 50000, 4000], [100000, 200000, 8000], [200001, 300001, 10000], [300001, 450000, 12000],
+     [450001, 600000, 15000], [600001, 800000, 20000], [800001, 1000000, 30000], [1000001, '', 40000]]
+      .forEach(x => addRow(...x));
+  };
+  $('#apply-ranges').onclick = () => {
+    const out = []; let bad = 0;
+    $$('.rr:not(.h)', rows).forEach(r => {
+      const [a, b, c] = $$('input', r).map(i => i.value.trim());
+      if (a === '' && b === '' && c === '') return;
+      if (a === '' || c === '' || (b !== '' && +b < +a)) { bad++; r.classList.add('err'); return; }
+      r.classList.remove('err'); out.push(`${a}-${b}:${c}`);
+    });
+    if (bad) { $('#range-msg').textContent = bad + ' row(s) need a start, a fee, and an end that is not below the start.'; return; }
+    ta.value = out.join('\n'); chips(); dirty(); $('#m-ranges').close();
+  };
+
+  /* Loan terms */
+  const tt = $('#loan_terms_and_conditions'), te = $('#terms-edit');
+  const terms = () => $('#terms-prev').textContent = tt.value.trim() || 'Standard terms will be used.';
+  const count = () => $('#terms-count').textContent = te.value.length.toLocaleString() + ' characters';
+  $('#m-terms').addEventListener('prepare', () => { te.value = tt.value; count(); });
+  te.addEventListener('input', count);
+  $('#apply-terms').onclick = () => { tt.value = te.value; terms(); dirty(); $('#m-terms').close(); };
+
+  /* Unsaved changes and save state */
+  const snap = () => [...new FormData(form)].map(([k, v]) => k + '=' + (v instanceof File ? v.name + v.size : v)).join('&');
+  let base = snap();
+  function dirty() {
+    const d = snap() !== base;
+    bar.classList.toggle('dirty', d);
+    $('#st').textContent = d ? 'You have unsaved changes' : 'No unsaved changes';
+  }
+  ['input', 'change'].forEach(ev => form.addEventListener(ev, () => { sync(); pills(); dirty(); }));
+  $('#discard').onclick = () => {
+    form.reset();
+    setTimeout(() => { sync(); pills(); chips(); terms(); logoReset(); dirty(); });
+  };
+  addEventListener('beforeunload', e => {
+    if (!saving && bar.classList.contains('dirty')) { e.preventDefault(); e.returnValue = ''; }
+  });
+  form.addEventListener('submit', () => {
+    saving = true; const b = $('#save'); b.textContent = 'Saving…'; b.disabled = true;
+  });
+
+  /* Reveal sections that hold an invalid field so the browser can show the error */
+  let busy = false;
+  form.addEventListener('invalid', e => {
+    if (busy) return; busy = true;
+    const el = e.target, r = el.closest('.reveal'), s = el.closest('.sec');
+    if (r) r.classList.add('show');
+    if (s) setOpen(s, true);
+    setTimeout(() => { el.focus(); el.reportValidity(); busy = false; }, 320);
+  }, true);
+
+  sync(); syncPenaltyRateUnit(); pills(); chips(); terms(); dirty();
+})();
+</script>
 {% endblock %}

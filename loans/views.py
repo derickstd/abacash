@@ -304,6 +304,8 @@ def _resolve_loan_fee_switches(product, data, can_override, existing_loan=None):
         processing_fee_requested = True
         penalty_requested = True
 
+    penalty_requested = penalty_requested and CompanySettings.get().penalties_enabled
+
     if can_override or same_product_draft:
         return processing_fee_requested, penalty_requested
 
@@ -542,6 +544,7 @@ def loan_apply_step2(request, client_id):
             processing_fee_enabled, penalty_enabled = _resolve_loan_fee_switches(
                 product, data, can_override_loan_fees, loan
             )
+            penalty_frequency = CompanySettings.get().penalty_frequency
 
             if principal < product.min_amount or principal > product.max_amount:
                 raise ValueError(
@@ -565,6 +568,7 @@ def loan_apply_step2(request, client_id):
             loan.interest_rate_monthly = product.interest_rate_monthly
             loan.interest_method = interest_method
             loan.penalty_rate_monthly = product.penalty_rate_monthly
+            loan.penalty_frequency = penalty_frequency
             loan.penalty_enabled = penalty_enabled
             if not penalty_enabled:
                 loan.penalty_rate_monthly = Decimal("0")
@@ -1204,6 +1208,7 @@ def loan_edit(request, pk):
             processing_fee_enabled, penalty_enabled = _resolve_loan_fee_switches(
                 product, data, can_override_loan_fees, loan
             )
+            penalty_frequency = CompanySettings.get().penalty_frequency
 
             # Parse collateral
             collateral_descs = data.getlist("collateral_desc")
@@ -1246,6 +1251,7 @@ def loan_edit(request, pk):
                 loan.interest_rate_monthly = product.interest_rate_monthly
                 loan.interest_method = interest_method
                 loan.penalty_enabled = penalty_enabled
+                loan.penalty_frequency = penalty_frequency
                 loan.penalty_rate_monthly = (
                     product.penalty_rate_monthly if penalty_enabled else Decimal("0")
                 )
@@ -1659,8 +1665,13 @@ def loan_reschedule(request, pk):
                 "interest_method",
                 loan.interest_method,
             )
-            selected_penalty_enabled = getattr(selected_product, "penalty_enabled", False)
+            company_settings = CompanySettings.get()
+            selected_penalty_enabled = (
+                getattr(selected_product, "penalty_enabled", False)
+                and company_settings.penalties_enabled
+            )
             loan.penalty_enabled = selected_penalty_enabled
+            loan.penalty_frequency = company_settings.penalty_frequency
             loan.penalty_rate_monthly = (
                 getattr(selected_product, "penalty_rate_monthly", Decimal("0"))
                 if selected_penalty_enabled
@@ -2038,6 +2049,7 @@ def loan_renew(request, pk):
                 can_override_loan_fees,
                 existing_loan,
             )
+            penalty_frequency = CompanySettings.get().penalty_frequency
 
             if not reason:
                 raise ValueError("Renewal reason is required.")
@@ -2113,6 +2125,7 @@ def loan_renew(request, pk):
                     interest_rate_monthly=product.interest_rate_monthly,
                     interest_method=interest_method,
                     penalty_enabled=penalty_enabled,
+                    penalty_frequency=penalty_frequency,
                     penalty_rate_monthly=(
                         product.penalty_rate_monthly if penalty_enabled else Decimal("0")
                     ),
@@ -2906,6 +2919,7 @@ def loan_product_list(request):
             "q": q,
             "status": status,
             "is_ceo": request.user.can("can_view_all_loan_products"),
+            "penalty_frequency_label": CompanySettings.get().get_penalty_frequency_display(),
         },
     )
 
@@ -2981,6 +2995,7 @@ def loan_product_create(request):
         "product_form_defaults": product_form_defaults,
         "interest_method_choices": LoanProduct.InterestMethod.choices,
         "frequency_choices": LoanProduct.RepaymentFrequency.choices,
+        "penalty_frequency_label": CompanySettings.get().get_penalty_frequency_display(),
         "form_error": form_error,
     }
     template = (
@@ -3055,6 +3070,7 @@ def loan_product_edit(request, pk: int):
         },
         "interest_method_choices": LoanProduct.InterestMethod.choices,
         "frequency_choices": LoanProduct.RepaymentFrequency.choices,
+        "penalty_frequency_label": CompanySettings.get().get_penalty_frequency_display(),
         "form_error": form_error,
     }
     template = (

@@ -53,7 +53,7 @@
           <div class="review-row"><span>Term</span><strong>{{ loan.term_months }} months</strong></div>
           <div class="review-row"><span>Frequency</span><strong>{{ loan.get_repayment_frequency_display }}</strong></div>
           <div class="review-row"><span>Interest Rate</span><strong>{{ loan.interest_rate_monthly }}%/month ({{ loan.get_interest_method_display }})</strong></div>
-          <div class="review-row"><span>Late-payment penalty</span><strong>{% if loan.penalty_enabled %}Enabled ({{ loan.penalty_rate_monthly }}% monthly){% else %}Waived{% endif %}</strong></div>
+          <div class="review-row"><span>Late-payment penalty</span><strong>{% if loan.penalty_enabled %}Enabled ({{ loan.penalty_rate_monthly }}% {{ loan.get_penalty_frequency_display|lower }}){% else %}Waived{% endif %}</strong></div>
           {% if loan.purpose %}
           <div class="review-row"><span>Purpose</span><span style="text-align:right;max-width:60%;">{{ loan.purpose }}</span></div>
           {% endif %}

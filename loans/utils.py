@@ -662,14 +662,30 @@ def collateral_minimum(collateral_items: list[dict]) -> Decimal:
     return _round(total * Decimal("0.5"))
 
 
-def calculate_penalty(overdue_amount: Decimal, monthly_penalty_rate: Decimal, months_overdue: int) -> Decimal:
+def calculate_penalty(
+    overdue_amount: Decimal,
+    penalty_rate: Decimal,
+    days_overdue: int,
+    frequency: str = "MONTHLY",
+    periods_already_assessed: int = 0,
+) -> Decimal:
     """
-    Calculate late payment penalty.
-    penalty = overdue_amount × (monthly_penalty_rate / 100) × months_overdue
+    Calculate newly accrued penalty per overdue day or started 30-day period.
     """
-    rate    = monthly_penalty_rate / Decimal("100")
-    penalty = overdue_amount * rate * Decimal(str(max(months_overdue, 1)))
-    return _round(penalty)
+    periods_overdue = penalty_periods_elapsed(days_overdue, frequency)
+    new_periods = max(periods_overdue - periods_already_assessed, 0)
+    rate = penalty_rate / Decimal("100")
+    return _round(overdue_amount * rate * Decimal(str(new_periods)))
+
+
+def penalty_periods_elapsed(days_overdue: int, frequency: str) -> int:
+    """Count daily periods or started 30-day periods elapsed while overdue."""
+    days_overdue = max(days_overdue, 0)
+    if frequency == "DAILY":
+        return days_overdue
+    elif frequency == "MONTHLY":
+        return (days_overdue + 29) // 30
+    raise ValueError("Penalty frequency must be DAILY or MONTHLY.")
 
 
 # ------------------------------------------------------------------ #

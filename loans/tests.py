@@ -18,7 +18,11 @@ from clients.models import Client
 from common.pdf_utils import generate_loan_calculator_pdf, generate_loan_schedule_pdf
 from loans import views as loan_views
 from loans.models import Loan, LoanProduct
-from loans.utils import calculate_processing_fee_amount, resolve_processing_fee_rate
+from loans.utils import (
+    calculate_penalty,
+    calculate_processing_fee_amount,
+    resolve_processing_fee_rate,
+)
 
 
 class _RelatedList(list):
@@ -39,6 +43,10 @@ class ProcessingFeeResolutionTests(SimpleTestCase):
     def test_new_company_settings_use_default_range_fees(self):
         settings = CompanySettings()
         self.assertEqual(settings.processing_fee_method, "RANGE")
+        self.assertEqual(
+            settings.penalty_frequency,
+            CompanySettings.PenaltyFrequency.MONTHLY,
+        )
         self.assertEqual(
             settings.processing_fee_ranges,
             "0-50000:4000\n"
@@ -147,6 +155,50 @@ class ProcessingFeeResolutionTests(SimpleTestCase):
         self.assertEqual(loan.effective_processing_fee, Decimal("0"))
 
 
+class PenaltyCalculationTests(SimpleTestCase):
+    def test_daily_penalty_applies_rate_for_each_overdue_day(self):
+        self.assertEqual(
+            calculate_penalty(
+                Decimal("1000"),
+                Decimal("2"),
+                days_overdue=5,
+                frequency="DAILY",
+            ),
+            Decimal("100.00"),
+        )
+
+    def test_monthly_penalty_applies_for_each_started_thirty_day_period(self):
+        self.assertEqual(
+            calculate_penalty(
+                Decimal("1000"),
+                Decimal("2"),
+                days_overdue=31,
+                frequency="MONTHLY",
+            ),
+            Decimal("40.00"),
+        )
+
+    def test_no_penalty_is_applied_before_overdue_period_starts(self):
+        self.assertEqual(
+            calculate_penalty(
+                Decimal("1000"),
+                Decimal("2"),
+                days_overdue=0,
+                frequency="DAILY",
+            ),
+            Decimal("0.00"),
+        )
+
+    def test_rejects_unknown_penalty_frequency(self):
+        with self.assertRaises(ValueError):
+            calculate_penalty(
+                Decimal("1000"),
+                Decimal("2"),
+                days_overdue=5,
+                frequency="WEEKLY",
+            )
+
+
 class CEOOnlyLoanActionTests(SimpleTestCase):
     def setUp(self):
         self.factory = RequestFactory()
@@ -214,6 +266,12 @@ class CEOOnlyLoanActionTests(SimpleTestCase):
 
 class LoanFeeSwitchTests(SimpleTestCase):
     def setUp(self):
+        settings_patcher = patch(
+            "loans.views.CompanySettings.get",
+            return_value=SimpleNamespace(penalties_enabled=True),
+        )
+        settings_patcher.start()
+        self.addCleanup(settings_patcher.stop)
         self.product = SimpleNamespace(
             pk=1,
             interest_method=LoanProduct.InterestMethod.FLAT_RATE,
@@ -301,6 +359,34 @@ class LoanFeeSwitchTests(SimpleTestCase):
                 can_override=True,
             ),
             (True, True),
+        )
+
+    @patch(
+        "loans.views.CompanySettings.get",
+        return_value=SimpleNamespace(penalties_enabled=False),
+    )
+    def test_tenant_can_disable_penalties_even_for_ceo_overrides(self, _get_settings):
+        self.assertEqual(
+            loan_views._resolve_loan_fee_switches(
+                self.product,
+                {"processing_fee_enabled": "on", "penalty_enabled": "on"},
+                can_override=True,
+            ),
+            (True, False),
+        )
+
+    @patch(
+        "loans.views.CompanySettings.get",
+        return_value=SimpleNamespace(penalties_enabled=False),
+    )
+    def test_tenant_can_disable_penalties_for_new_loans(self, _get_settings):
+        self.assertEqual(
+            loan_views._resolve_loan_fee_switches(
+                self.product,
+                {},
+                can_override=False,
+            ),
+            (True, False),
         )
 
     def test_non_ceo_cannot_enable_product_disabled_fees(self):
