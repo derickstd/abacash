@@ -20,6 +20,7 @@ from django.utils import timezone
 from django.views.decorators.http import require_GET, require_POST
 
 from accounts.models import BankAccount, Branch, CompanySettings
+from accounts.terms import sanitize_loan_terms
 from accounts.branch_scope import (
     SESSION_KEY,
     scope_to_branch,
@@ -139,6 +140,7 @@ def _loan_calculator_schedule(inputs):
         start_date=date.today(),
         method=inputs["method"],
         frequency=inputs["frequency"],
+        decimal_places=4,
     )
     return schedule, totals
 
@@ -156,15 +158,15 @@ def loan_calculator_preview(request):
     period_count = len(schedule)
     average_payment = (
         totals["total_repayable"] / Decimal(period_count)
-    ).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    ).quantize(Decimal("0.0001"), rounding=ROUND_HALF_UP)
 
     return JsonResponse({
         "period_count": period_count,
-        "total_interest": f'{totals["total_interest"]:.2f}',
-        "total_repayable": f'{totals["total_repayable"]:.2f}',
-        "average_payment": f"{average_payment:.2f}",
-        "first_payment": f'{schedule[0]["total_payment"]:.2f}',
-        "final_payment": f'{schedule[-1]["total_payment"]:.2f}',
+        "total_interest": f'{totals["total_interest"]:.4f}',
+        "total_repayable": f'{totals["total_repayable"]:.4f}',
+        "average_payment": f"{average_payment:.4f}",
+        "first_payment": f'{schedule[0]["total_payment"]:.4f}',
+        "final_payment": f'{schedule[-1]["total_payment"]:.4f}',
     })
 
 
@@ -2641,6 +2643,7 @@ def loan_schedule_print(request, pk):
         ).order_by("account_type", "bank_name"),
         "total_cost_of_credit": loan.total_interest + loan.processing_fee,
         "company_settings": company_settings,
+        "loan_terms_html": sanitize_loan_terms(company_settings.loan_terms_and_conditions),
         "collateral_items": collateral_items,
         "guarantees": guarantees,
         "selected_signatory": chosen_signatory,
@@ -2659,7 +2662,7 @@ def loan_schedule_download(request, pk):
     pdf_bytes = generate_loan_schedule_pdf(
         loan,
         signatory=chosen_signatory,
-        loan_terms=CompanySettings.get().loan_terms_and_conditions,
+        loan_terms=sanitize_loan_terms(CompanySettings.get().loan_terms_and_conditions),
     )
     response = HttpResponse(pdf_bytes, content_type="application/pdf")
     response["Content-Disposition"] = (
@@ -2671,11 +2674,9 @@ def loan_schedule_download(request, pk):
 @login_required
 def schedule_preview_pdf(request, client_id):
     """
-    Render the in-progress (draft/unsaved) loan schedule from step 2 of the
-    application wizard as a PDF, using the same product/principal/term/
-    frequency parameters as the live HTMX preview. Opened in a new tab so
-    the user gets a real, printable PDF instead of `window.print()`-ing
-    the whole page.
+    Render the current application-stage loan schedule as a printable PDF.
+    Step 2 supplies unsaved form values; later stages can rely on the saved
+    draft values.
     """
     from django.http import HttpResponse, HttpResponseBadRequest
 
@@ -2684,13 +2685,30 @@ def schedule_preview_pdf(request, client_id):
     client = get_object_or_404(Client, pk=client_id, is_active=True, is_blacklisted=False)
 
     try:
-        product_id  = int(request.GET.get("product", 0))
-        principal   = Decimal(str(request.GET.get("principal", "0") or "0"))
-        term_months = int(request.GET.get("term_months", 0) or 0)
-        frequency   = request.GET.get("frequency", "") or Loan.RepaymentFrequency.MONTHLY
-
-        product = get_object_or_404(LoanProduct, pk=product_id, is_active=True)
         draft = _get_schedule_preview_draft(request.GET, client_id=client.pk)
+        product_id = int(request.GET.get("product") or (draft.product_id if draft else 0))
+        principal_value = request.GET.get("principal") or (
+            draft.principal_amount if draft else "0"
+        )
+        principal = Decimal(str(principal_value))
+        term_months = int(
+            request.GET.get("term_months") or (draft.term_months if draft else 0)
+        )
+        frequency = request.GET.get("frequency") or (
+            draft.repayment_frequency if draft else Loan.RepaymentFrequency.MONTHLY
+        )
+
+        if (
+            product_id <= 0
+            or principal <= 0
+            or term_months < 1
+            or term_months > 60
+            or frequency not in dict(Loan.RepaymentFrequency.choices)
+        ):
+            return HttpResponseBadRequest(
+                "Select a product and valid repayment frequency, amount, and term before printing the schedule."
+            )
+        product = get_object_or_404(LoanProduct, pk=product_id, is_active=True)
         can_change_interest_method = request.user.can("can_change_loan_interest_method")
         interest_method = _resolve_loan_interest_method(
             product,
@@ -2737,7 +2755,7 @@ def schedule_preview_pdf(request, client_id):
             fee_source=fee_source,
             interest_method_label=dict(LoanProduct.InterestMethod.choices)[interest_method],
         )
-    except (ValueError, TypeError):
+    except (InvalidOperation, ValueError, TypeError):
         return HttpResponseBadRequest(
             "Enter valid loan details above before printing the schedule."
         )
@@ -2758,12 +2776,35 @@ def schedule_preview(request):
     Returns only the schedule table partial.
     """
     try:
-        product_id  = int(request.GET.get("product", 0))
+        product_id  = int(request.GET.get("product") or 0)
         principal   = Decimal(str(request.GET.get("principal", "0") or "0"))
         term_months = int(request.GET.get("term_months", 1) or 1)
         frequency   = request.GET.get("frequency", "MONTHLY")
+    except (InvalidOperation, TypeError, ValueError):
+        return render(request, "partials/schedule_table.html", {
+            "schedule_rows": [],
+            "error": "Enter a valid loan amount and term to preview the schedule.",
+        })
 
-        product = LoanProduct.objects.get(pk=product_id, is_active=True)
+    if product_id <= 0 or principal <= 0 or term_months < 1 or term_months > 60:
+        return render(request, "partials/schedule_table.html", {
+            "schedule_rows": [],
+            "error": "Select a product and enter a positive loan amount and term to preview the schedule.",
+        })
+    if frequency not in dict(Loan.RepaymentFrequency.choices):
+        return render(request, "partials/schedule_table.html", {
+            "schedule_rows": [],
+            "error": "Select a valid repayment frequency to preview the schedule.",
+        })
+
+    product = LoanProduct.objects.filter(pk=product_id, is_active=True).first()
+    if product is None:
+        return render(request, "partials/schedule_table.html", {
+            "schedule_rows": [],
+            "error": "Select an active loan product to preview the schedule.",
+        })
+
+    try:
         draft = _get_schedule_preview_draft(request.GET)
         interest_method = _resolve_loan_interest_method(
             product,
@@ -2772,7 +2813,7 @@ def schedule_preview(request):
             can_change=request.user.can("can_change_loan_interest_method"),
         )
         if interest_method not in dict(LoanProduct.InterestMethod.choices):
-            return HttpResponseBadRequest("Select a valid interest method.")
+            raise ValueError("Select a valid interest method to preview the schedule.")
         processing_fee_enabled, _penalty_enabled = _resolve_loan_fee_switches(
             product,
             request.GET,
@@ -2823,14 +2864,10 @@ def schedule_preview(request):
             "nominal_apr": product.interest_rate_monthly * Decimal("12"),
             "total_cost_of_credit": totals["total_interest"] + (processing_fee or Decimal("0")),
         })
-    except Exception:
+    except (InvalidOperation, TypeError, ValueError):
         return render(request, "partials/schedule_table.html", {
             "schedule_rows": [],
-            "totals":        {},
-            "processing_fee": None,
-            "processing_fee_percent": None,
-            "fee_source": None,
-            "error":         "Enter valid loan details above to preview the schedule.",
+            "error": "Could not calculate the schedule from these loan details. Review the selected terms and try again.",
         })
 
 

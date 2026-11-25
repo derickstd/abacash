@@ -42,6 +42,7 @@ from .cash import cash_movement, recent_cash_transactions
 from .permissions import PERMISSIONS, ALL_GROUPS
 from .audit import log_action
 from .forms import EmailOrUsernameAuthenticationForm
+from .terms import sanitize_loan_terms
 
 User = get_user_model()
 
@@ -1618,9 +1619,9 @@ def company_settings(request):
             settings_obj.company_registration   = d.get("company_registration", "").strip()
             settings_obj.tax_identification     = d.get("tax_identification", "").strip()
             settings_obj.currency_symbol        = d.get("currency_symbol", "UGX").strip() or "UGX"
-            settings_obj.loan_terms_and_conditions = d.get(
-                "loan_terms_and_conditions", ""
-            ).strip()
+            settings_obj.loan_terms_and_conditions = sanitize_loan_terms(
+                d.get("loan_terms_and_conditions", "")
+            )
 
             def _dec(key, default):
                 v = d.get(key, "").strip()
